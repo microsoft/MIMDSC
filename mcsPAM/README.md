@@ -64,10 +64,10 @@ The MCS PAM solution leverages Azure as a baseline for deploying the solution. T
 ### Monitor
 **TODO:** Complete this Monitor section
 
-#Automated Deployment
+# Automated Deployment
 The MIM PAM Azure Integration automatically deploys the Azure IAAS and PAAS services and the MIM infrastructure required for the PAM Offering.
 
-##Automated Infrastructure as a Service
+## Automated Infrastructure as a Service
 The Azure IAAS deployment heavily relies on Azure Resource Manager (**ARM**) tempaltes to deploy the resources necessary for the MIM PAM Solution. This deployment assumes three ARM Resource Groups:
 -Production Domain
 -Privilege Domain
@@ -75,12 +75,12 @@ The Azure IAAS deployment heavily relies on Azure Resource Manager (**ARM**) tem
 
 See the [IAAS artifacts](IAAS/README.md) in the solution for more details.
 
-##Automated Platforms as a Service
+## Automated Platforms as a Service
 MIM PAM relies on a few Azure Platforms as a Service providers. Each of these providers gets set up automatically. The MIM PAM solution also configures these services to (whenever possible) comply with a least privilege model.
 
 See the [PAAS artifacts](PAAS/README.md) in the solution for more details.
 
-##Automated Microsoft Consulting Services Privilege Access Managment
+## Automated Microsoft Consulting Services Privilege Access Managment
 MIM PAM includes some automation scripts for deploying the solution out of the box. The MCS PAM solution tailors those scripts to follow Least Privileged best practices. The Azure integration of MIM PAM will include the configuration of MIM PAM in the deployed IAAS and PAAS enviornments.
 
 # Build and Test
