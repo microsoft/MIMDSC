@@ -1,7 +1,6 @@
-﻿
-#Get public and private function definition files.
+
+#Get function definition files.
 $Public = @(Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue)
-#$Private = @(Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue)
 
 #Dot source the files
 Foreach ($import in @($Public))
