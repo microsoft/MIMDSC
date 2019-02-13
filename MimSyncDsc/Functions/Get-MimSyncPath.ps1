@@ -8,6 +8,6 @@ function Get-MimSyncPath
 .EXAMPLE
    Get-MimSyncPath
 #>
-    $fimRegKey = Get-MimSyncRegistryKey -Component FIMSynchronization
+    $fimRegKey = Get-MimRegistryKey -Component FIMSynchronization
     Get-ItemProperty -Path (Join-Path $fimRegKey.PSPath Parameters) | select -ExpandProperty Path
 }##Closing: function Get-MimSyncPath

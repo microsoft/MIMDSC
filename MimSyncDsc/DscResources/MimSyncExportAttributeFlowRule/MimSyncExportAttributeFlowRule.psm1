@@ -1,4 +1,4 @@
-﻿
+﻿Import-Module MimSyncDsc
 function Get-TargetResource
 {
 	[CmdletBinding()]
@@ -22,6 +22,7 @@ function Get-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping")]
 		[String]
 		$Type
 	)
@@ -33,7 +34,7 @@ function Get-TargetResource
 
     $xPathFilter = "//ma-data[name='$ManagementAgentName']/export-attribute-flow/export-flow-set[@mv-object-type='$MVObjectType'and @cd-object-type='$CDObjectType']/export-flow[@cd-attribute='$CDAttribute' and $Type]" 
     Write-Verbose "  Using XPath: $xPathFilter"
-    $fimSyncObject = Select-Xml -Path (Join-Path (Get-FimSyncConfigCache) *.xml) -XPath $xPathFilter
+    $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath $xPathFilter
 
     $fimSrcAttributes = @()
     foreach($fimSrcAttribute in Select-Xml -Xml $fimSyncObject.Node -XPath '*/src-attribute')
@@ -90,6 +91,7 @@ function Set-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping")]
 		[String]
 		$Type,
 
@@ -136,6 +138,7 @@ function Test-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping")]
 		[String]
 		$Type,
 
@@ -159,11 +162,11 @@ function Test-TargetResource
     Write-MimSyncConfigCache -Verbose
 
     ### Get the FIM object XML from the server configuration files
-    Write-Verbose "Finding export attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."
+    Write-Verbose "Finding export attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] <-- MV.$MVObjectType.[$SrcAttribute] ..."
 
     $xPathFilter = "//ma-data[name='$ManagementAgentName']/export-attribute-flow/export-flow-set[@mv-object-type='$MVObjectType'and @cd-object-type='$CDObjectType']/export-flow[@cd-attribute='$CDAttribute' and $Type]" 
     Write-Verbose "  Using XPath: $xPathFilter"
-    $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath $xPathFilter
+    $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath $xPathFilter 
 
     $objectsAreTheSame = $true
 
@@ -183,7 +186,7 @@ function Test-TargetResource
             {
                 Write-Verbose "  Comparing property 'script-context'"
                 Write-Verbose "    From DSC: $ScriptContext"
-                Write-Verbose "    From FIM: $($fimSyncObject.Node.'scripted-mapping'.'script-context')"
+                Write-Verbose "    From MIM: $($fimSyncObject.Node.'scripted-mapping'.'script-context')"
                 if ($fimSyncObject.Node.'scripted-mapping'.'script-context' -ne $ScriptContext)
                 {
                     Write-Warning "  'script-context' property is not the same."
@@ -202,7 +205,7 @@ function Test-TargetResource
                 }
                 Write-Verbose "  Comparing property 'src-attribute'"
                 Write-Verbose "    From DSC: $($SrcAttribute -join ',')"
-                Write-Verbose "    From FIM: $($fimSrcAttributes -join ',')"
+                Write-Verbose "    From MIM: $($fimSrcAttributes -join ',')"
                 if (Compare-Object -ReferenceObject $SrcAttribute -DifferenceObject $fimSrcAttributes )
                 {
                     Write-Warning "  'src-attribute' property is not the same."
@@ -216,7 +219,7 @@ function Test-TargetResource
             {
                 Write-Verbose "  Comparing property 'constant-mapping'"
                 Write-Verbose "    From DSC: $ConstantValue"
-                Write-Verbose "    From FIM: $($fimSyncObject.Node.'constant-mapping'.'constant-value')"
+                Write-Verbose "    From MIM: $($fimSyncObject.Node.'constant-mapping'.'constant-value')"
                 if ($fimSyncObject.Node.'constant-mapping'.'constant-value' -ne $ConstantValue)
                 {
                     Write-Warning "  'constant-value' property is not the same."
@@ -231,7 +234,7 @@ function Test-TargetResource
                 Write-Verbose "  Comparing property 'suppress-deletions'"
                 $fimSuppressDeletionsValue = [Convert]::ToBoolean($fimSyncObject.Node.'suppress-deletions')
                 Write-Verbose "    From DSC: $SuppressDeletions"
-                Write-Verbose "    From FIM: $fimSuppressDeletionsValue"
+                Write-Verbose "    From MIM: $fimSuppressDeletionsValue"
                 if ($fimSuppressDeletionsValue -ne $SuppressDeletions)
                 {
                     Write-Warning "  'suppress-deletions' property is not the same."
@@ -259,13 +262,6 @@ function Test-TargetResource
     {
         Write-Error "Expected the 'Ensure' parameter to be 'Present' or 'Absent'"
     }
-
-    if ($objectsAreTheSame -eq $false)
-    {
-        $currentObject = Get-TargetResource -ManagementAgentName $ManagementAgentName -MVObjectType $MVObjectType -CDObjectType $CDObjectType -CDAttribute $CDAttribute -Type $Type
-        Write-MimSyncDscAuditObject -FimXpathFilter $xPathFilter -ObjectTestResult $objectsAreTheSame -DscBoundParameters $PSBoundParameters -CurrentObject $currentObject
-    }
-
 
     Write-Verbose "Returning: $objectsAreTheSame"
     return $objectsAreTheSame
