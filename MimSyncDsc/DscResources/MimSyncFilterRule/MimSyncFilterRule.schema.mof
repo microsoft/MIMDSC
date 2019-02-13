@@ -1,0 +1,26 @@
+﻿[ClassVersion("1.0.0.0"), FriendlyName("FilterCondition")]
+class MimSyncFilterCondition
+{
+    [Write] String CDAttribute;
+    [Write] String Operator;
+    [Write] String Value;
+};
+
+[ClassVersion("1.0.0.0"), FriendlyName("FilterAlternative")]
+class MimSyncFilterAlternative
+{
+    [Write] String ID;
+    [Write, EmbeddedInstance("MimSyncFilterCondition")] string FilterCondition[];
+};
+
+[ClassVersion("1.0.0.0"), FriendlyName("FilterRule")]
+class MimSyncFilterRule : OMI_BaseResource
+{
+	[Key]   String  ManagementAgentName;
+	[Key]   String  CDObjectType;
+	[Write] Boolean ImportFilter;
+    [Write] String  Type;
+    [Write, EmbeddedInstance("MimSyncFilterAlternative")] string FilterAlternative[];
+	[Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
+
