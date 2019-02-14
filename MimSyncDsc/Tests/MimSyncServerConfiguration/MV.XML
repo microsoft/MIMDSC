@@ -1,0 +1,357 @@
+<saved-mv-configuration server='CMVM24043' export-date='2019-02-13 19:02:36.997'>
+    <!--WARNING>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!
+!! The contents of this file should not be edited.
+!! Any such modifications to this file may result in errors during import.
+!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+</WARNING-->
+    <mv-data>
+        <format-version>1</format-version>
+        <version>14</version>
+        <schema>
+            <dsml:dsml xmlns:dsml="http://www.dsml.org/DSML" 
+                xmlns:ms-dsml="http://www.microsoft.com/MMS/DSML">
+                <dsml:directory-schema>
+                    <dsml:class id="SyncObject" type="structural">
+                        <dsml:name>SyncObject</dsml:name>
+                        <dsml:attribute ref="#Alias" required="false" />
+                        <dsml:attribute ref="#AssistantName" required="false" />
+                        <dsml:attribute ref="#City" required="false" />
+                        <dsml:attribute ref="#Company" required="false" />
+                        <dsml:attribute ref="#CustomAttribute1" required="false" />
+                        <dsml:attribute ref="#CustomAttribute10" required="false" />
+                        <dsml:attribute ref="#CustomAttribute11" required="false" />
+                        <dsml:attribute ref="#CustomAttribute12" required="false" />
+                        <dsml:attribute ref="#CustomAttribute13" required="false" />
+                        <dsml:attribute ref="#CustomAttribute14" required="false" />
+                        <dsml:attribute ref="#CustomAttribute15" required="false" />
+                        <dsml:attribute ref="#CustomAttribute2" required="false" />
+                        <dsml:attribute ref="#CustomAttribute3" required="false" />
+                        <dsml:attribute ref="#CustomAttribute4" required="false" />
+                        <dsml:attribute ref="#CustomAttribute5" required="false" />
+                        <dsml:attribute ref="#CustomAttribute6" required="false" />
+                        <dsml:attribute ref="#CustomAttribute7" required="false" />
+                        <dsml:attribute ref="#CustomAttribute8" required="false" />
+                        <dsml:attribute ref="#CustomAttribute9" required="false" />
+                        <dsml:attribute ref="#DeliverToMailboxAndForward" required="false" />
+                        <dsml:attribute ref="#Department" required="false" />
+                        <dsml:attribute ref="#DisplayName" required="false" />
+                        <dsml:attribute ref="#EmailAddresses" required="false" />
+                        <dsml:attribute ref="#ExchangeGuid" required="false" />
+                        <dsml:attribute ref="#ExternalEmailAddress" required="false" />
+                        <dsml:attribute ref="#Fax" required="false" />
+                        <dsml:attribute ref="#FirstName" required="false" />
+                        <dsml:attribute ref="#ForwardingAddress" required="false" />
+                        <dsml:attribute ref="#HomePhone" required="false" />
+                        <dsml:attribute ref="#HostedObjectType" required="false" />
+                        <dsml:attribute ref="#Initials" required="false" />
+                        <dsml:attribute ref="#Languages" required="false" />
+                        <dsml:attribute ref="#LastName" required="false" />
+                        <dsml:attribute ref="#LegacyExchangeDN" required="false" />
+                        <dsml:attribute ref="#Manager" required="false" />
+                        <dsml:attribute ref="#MobilePhone" required="false" />
+                        <dsml:attribute ref="#Notes" required="false" />
+                        <dsml:attribute ref="#Office" required="false" />
+                        <dsml:attribute ref="#OnPremiseObjectDirSyncId" required="false" />
+                        <dsml:attribute ref="#OnPremiseObjectType" required="false" />
+                        <dsml:attribute ref="#OtherHomePhone" required="false" />
+                        <dsml:attribute ref="#OtherTelephone" required="false" />
+                        <dsml:attribute ref="#Pager" required="false" />
+                        <dsml:attribute ref="#Phone" required="false" />
+                        <dsml:attribute ref="#PostalCode" required="false" />
+                        <dsml:attribute ref="#ResourceCapacity" required="false" />
+                        <dsml:attribute ref="#ResourceCustom" required="false" />
+                        <dsml:attribute ref="#RetentionUrl" required="false" />
+                        <dsml:attribute ref="#SamAccountName" required="false" />
+                        <dsml:attribute ref="#StateOrProvince" required="false" />
+                        <dsml:attribute ref="#StreetAddress" required="false" />
+                        <dsml:attribute ref="#TelephoneAssistant" required="false" />
+                        <dsml:attribute ref="#Title" required="false" />
+                        <dsml:attribute ref="#UserPrincipalName" required="false" />
+                        <dsml:attribute ref="#WindowsEmailAddress" required="false" />
+                    </dsml:class>                    <!-- Additions for ILM2 -->                    <!-- More additions for ILM2 [Codeless Provisioning] -->
+                    <dsml:attribute-type id="Alias" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Alias</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute1" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute1</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute2" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute2</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute3" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute3</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute4" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute4</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute5" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute5</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute6" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute6</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute7" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute7</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute8" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute8</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute9" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute9</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute10" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute10</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute11" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute11</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute12" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute12</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute13" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute13</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute14" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute14</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="CustomAttribute15" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>CustomAttribute15</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="DisplayName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>DisplayName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="EmailAddresses" ms-dsml:indexed="true" ms-dsml:indexable="true">
+                        <dsml:name>EmailAddresses</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="SamAccountName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>SamAccountName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="AssistantName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>AssistantName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="City" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>City</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Company" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Company</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Department" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Department</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Fax" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Fax</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="FirstName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>FirstName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="HomePhone" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>HomePhone</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Initials" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Initials</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="LastName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>LastName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="MobilePhone" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>MobilePhone</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Office" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Office</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="OtherTelephone" ms-dsml:indexed="true" ms-dsml:indexable="true">
+                        <dsml:name>OtherTelephone</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Pager" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Pager</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Phone" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Phone</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="PostalCode" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>PostalCode</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="ResourceCustom" ms-dsml:indexed="true" ms-dsml:indexable="true">
+                        <dsml:name>ResourceCustom</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="StateOrProvince" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>StateOrProvince</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="StreetAddress" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>StreetAddress</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="TelephoneAssistant" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>TelephoneAssistant</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Title" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Title</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="UserPrincipalName" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>UserPrincipalName</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="ExternalEmailAddress" single-value="true" ms-dsml:indexable="true" ms-dsml:indexed="true">
+                        <dsml:name>ExternalEmailAddress</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="ResourceCapacity" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>ResourceCapacity</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="OnPremiseObjectType" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>OnPremiseObjectType</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="HostedObjectType" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>HostedObjectType</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="WindowsEmailAddress" single-value="true" ms-dsml:indexable="true" ms-dsml:indexed="true">
+                        <dsml:name>WindowsEmailAddress</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="ForwardingAddress" single-value="true">
+                        <dsml:name>ForwardingAddress</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.12</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="DeliverToMailboxAndForward" single-value="true">
+                        <dsml:name>DeliverToMailboxAndForward</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.7</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="ExchangeGuid" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>ExchangeGuid</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.5</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="LegacyExchangeDN" single-value="true" ms-dsml:indexable="true" ms-dsml:indexed="true">
+                        <dsml:name>LegacyExchangeDN</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="OnPremiseObjectDirSyncId" single-value="true" ms-dsml:indexable="true" ms-dsml:indexed="true">
+                        <dsml:name>OnPremiseObjectDirSyncId</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Manager" single-value="true">
+                        <dsml:name>Manager</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.12</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Notes" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>Notes</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="RetentionUrl" single-value="true" ms-dsml:indexable="true">
+                        <dsml:name>RetentionUrl</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="Languages" ms-dsml:indexed="true" ms-dsml:indexable="true">
+                        <dsml:name>Languages</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                    <dsml:attribute-type id="OtherHomePhone" ms-dsml:indexed="true" ms-dsml:indexable="true">
+                        <dsml:name>OtherHomePhone</dsml:name>
+                        <dsml:syntax>1.3.6.1.4.1.1466.115.121.1.15</dsml:syntax>
+                    </dsml:attribute-type>
+                </dsml:directory-schema>
+            </dsml:dsml>
+        </schema>
+        <import-attribute-flow>
+            <import-flow-set mv-object-type="SyncObject">
+                <import-flows mv-attribute="FirstName" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{1E6AE212-C542-4355-9A45-29886CE561F8}">
+                        <direct-mapping>
+                            <src-attribute>FirstName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="Initials" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{533D5321-6941-407F-A5F9-CCD705F72DC8}">
+                        <direct-mapping>
+                            <src-attribute>Initial</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="Title" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{9997656D-B201-4B38-8504-87724F98CB62}">
+                        <direct-mapping>
+                            <src-attribute>JobTitle</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="LastName" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{0022BB53-2436-4C67-ABC2-46024AB4EA21}">
+                        <direct-mapping>
+                            <src-attribute>LastName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="SamAccountName" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{AB5630B5-3B4B-424B-B783-109AC4F293A3}">
+                        <direct-mapping>
+                            <src-attribute>UserID</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+            </import-flow-set>
+            <per-ma-options>
+                <ma-options ma-id="{ECAAB0CB-AE68-47D9-8F2F-5AAE1DB0377E}">
+                    <enable-recall>true</enable-recall>
+                </ma-options>
+                <ma-options ma-id="{9C3614F6-F975-4F32-9504-C821CBE36471}">
+                    <enable-recall>true</enable-recall>
+                </ma-options>
+            </per-ma-options>
+        </import-attribute-flow>
+        <provisioning type="scripted" />
+        <mv-deletion></mv-deletion>
+        <extension>
+            <assembly-name></assembly-name>
+            <application-protection>low</application-protection>
+        </extension>
+        <password-change-history-size>24</password-change-history-size>
+        <password-sync>
+            <password-sync-enabled>1</password-sync-enabled>
+        </password-sync>
+    </mv-data>
+
+</saved-mv-configuration>
