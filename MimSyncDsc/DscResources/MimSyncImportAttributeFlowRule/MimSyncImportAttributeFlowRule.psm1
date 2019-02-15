@@ -1,7 +1,4 @@
-﻿## This assembly is expected to be in the 'DscResources' folder for this module
-Add-Type -Path (Join-Path (Split-Path $PSScriptRoot) xmldiffpatch.dll)
-
-function Get-TargetResource
+﻿function Get-TargetResource
 {
 	[CmdletBinding()]
 	[OutputType([System.Collections.Hashtable])]
