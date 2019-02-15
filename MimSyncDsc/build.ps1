@@ -11,7 +11,10 @@ if (-not (Get-Module -Name Pester -ListAvailable))
 ### Find out what version of Pester we have
 Get-Module Pester -ListAvailable
 
-### Copy Sync Configuration Files
+Write-Host 'Copy MimSyncDsc module files to Program Files'
+Copy-Item .\MimSyncDsc "$env:ProgramFiles\WindowsPowerShell\Modules" -Container -Recurse -Verbose -Force
+
+Write-Host 'Copy Sync Configuration Files'
 New-Item -ItemType Directory -Path "$env:ProgramData\MimSyncDsc\Svrexport" -Verbose -Force | Out-Null
 Copy-Item -Path .\MimSyncDsc\Tests\MimSyncServerConfiguration\* "$env:ProgramData\MimSyncDsc\Svrexport\" -Force -Verbose
 
