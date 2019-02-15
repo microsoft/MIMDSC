@@ -1,6 +1,6 @@
 if (-not (Get-Module xDSCResourceDesigner -ListAvailable))
 {
-    Install-Module xDSCResourceDesigner
+    Install-Module xDSCResourceDesigner -Scope CurrentUser -Force -Confirm:$false
 }
 
 Get-DscResource -Module MimSyncDsc | ForEach-Object {
