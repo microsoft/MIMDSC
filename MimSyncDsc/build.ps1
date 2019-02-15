@@ -19,7 +19,7 @@ New-Item -ItemType Directory -Path "$env:ProgramData\MimSyncDsc\Svrexport" -Verb
 Copy-Item -Path .\MimSyncDsc\Tests\MimSyncServerConfiguration\* "$env:ProgramData\MimSyncDsc\Svrexport\" -Force -Verbose
 
 ### Run Tests
-$TestResults = Invoke-Pester -Script .\MimSyncDsc\Tests\MimSyncExportAttributeFlowRule.tests.ps1 -ExcludeTag RunsInLocalConfigurationManager -PassThru
+$TestResults = Invoke-Pester -Script .\MimSyncDsc\Tests\MimSyncExportAttributeFlowRule.tests.ps1  -ExcludeTag RunsInLocalConfigurationManager -OutputFile MimSyncExportAttributeFlowRule.testresults.xml -OutputFormat NUnitXML
 
 if($TestResults.FailedCount -gt 0)
 {

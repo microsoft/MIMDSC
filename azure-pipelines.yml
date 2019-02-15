@@ -14,4 +14,8 @@ steps:
    .\MimSyncDsc\build.ps1
   displayName: 'Build and Test'
   failOnStderr: true
-  ignoreLASTEXITCODE: true 
+  ignoreLASTEXITCODE: true
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'NUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '*testresults.xml' 
