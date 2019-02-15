@@ -1,5 +1,5 @@
 
-Get-MimSyncServerXml -Path (Get-MimSyncConfigCache) -Force
+#Get-MimSyncServerXml -Path (Get-MimSyncConfigCache) -Force
 
 $dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncExportAttributeFlowRule
 

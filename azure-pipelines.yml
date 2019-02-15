@@ -11,10 +11,7 @@ pool:
 
 steps:
 - powershell: |
-    Write-Host "Hello Build!"
-  displayName: 'Build it and they will dome'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+   .\MimSyncDsc\build.ps1
+  displayName: 'Build and Test'
+  failOnStderr: true
+  ignoreLASTEXITCODE: true 
