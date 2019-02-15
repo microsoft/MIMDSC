@@ -5,7 +5,7 @@ if (-not (Get-Module xDSCResourceDesigner -ListAvailable))
 
 Get-DscResource -Module MimSyncDsc | ForEach-Object {
     $dscResource = $PSItem
-    Describe "DscResource Designer Validation for $($dscResource.ResourceType)"{
+    Describe -Tag 'Build' "DscResource Designer Validation for $($dscResource.ResourceType)"{
         It 'Test-xDscResource Should Pass'{
             Test-xDscResource -Name $dscResource.Name | Should Be True
         }

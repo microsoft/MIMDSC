@@ -5,7 +5,7 @@ $dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncExportAttributeFl
 
 Import-Module -Name $dscResource.Path -Force
 
-Describe 'MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly'{
+Describe -Tag 'Build' 'MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly'{
     It 'Direct EAF Rule - desired state' {
 
         $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -CDAttribute JobTitle -CDObjectType person -Type 'direct-mapping' -SrcAttribute Title -SuppressDeletions $false -Ensure Present -Verbose
@@ -64,7 +64,7 @@ Describe 'MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly'
 }
 
 
-Describe 'MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly'{
+Describe -Tag 'Build' 'MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly'{
     It 'Direct EAF Rule - desired state' {
 
         $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -CDAttribute JobTitle -CDObjectType person -Type 'direct-mapping' -Verbose

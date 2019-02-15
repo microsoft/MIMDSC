@@ -1,11 +1,9 @@
 ﻿
-Get-MimSyncServerXml -Path (Get-MimSyncConfigCache) -Force
-
 $dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncFilterRule
 
 ipmo $dscResource.Path -Force
 
-Describe 'MimSyncFilterRule - calling Test-TargetResource Directly'{
+Describe -Tag 'Build' 'MimSyncFilterRule - calling Test-TargetResource Directly'{
     
     It 'Scripted Filter Rule - desired state' {
         $dscResult = Test-TargetResource -ManagementAgentName TinyHR -CDObjectType contact -Type scripted -ImportFilter $false -Ensure Present -Verbose 
@@ -92,7 +90,7 @@ Describe 'MimSyncFilterRule - calling Test-TargetResource Directly'{
     }
 }
 
-Describe 'MimSyncFilterRule - calling Get-TargetResource Directly'{
+Describe -Tag 'Build' 'MimSyncFilterRule - calling Get-TargetResource Directly'{
     
     It 'Scripted Filter Rule - desired state' {
         $dscResult = Get-TargetResource -ManagementAgentName TinyHR -CDObjectType contact -Verbose 
@@ -105,7 +103,7 @@ Describe 'MimSyncFilterRule - calling Get-TargetResource Directly'{
     }
 }
 
-Describe 'MimSyncFilterRule - using the Local Configuration Manager'{
+Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncFilterRule - using the Local Configuration Manager'{
     It 'Scripted Filter Rule - desired state' {
         Configuration TestMimSyncFilterRule 
         { 

@@ -24,6 +24,7 @@ function Get-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping")]
 		[String]
 		$Type
 	)
@@ -105,6 +106,7 @@ function Set-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping")]
 		[String]
 		$Type,
 
@@ -151,6 +153,7 @@ function Test-TargetResource
 		$CDObjectType,
 
         [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping")]
 		[String]
 		$Type,
 
