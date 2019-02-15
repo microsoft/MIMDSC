@@ -1,0 +1,17 @@
+﻿
+[ClassVersion("1.0.0.0"), FriendlyName("ImportAttributeFlowRule")]
+class MimSyncImportAttributeFlowRule : OMI_BaseResource
+{
+    [Key]   String  MVObjectType;
+    [Key]   String  MVAttribute;
+	[Key]   String  ManagementAgentName;
+	[Key]   String  CDObjectType;
+    [Key, ValueMap{"direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping"}, Values{"direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping"}] String Type;
+    [Write] String  SrcAttribute[];
+    [Write] String  ScriptContext;
+    [Write] String  ConstantValue;
+    [Write] UInt16  DNPart;
+    [Read]  String  ID;
+	[Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
+
