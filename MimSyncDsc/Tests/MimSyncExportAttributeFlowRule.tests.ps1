@@ -85,7 +85,7 @@ Describe 'MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly'{
 }
 
 
-Describe 'MimSyncExportAttributeFlowRule - using the Local Configuration Manager'{
+Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncExportAttributeFlowRule - using the Local Configuration Manager'{
     It 'Direct EAF Rule - desired state' {
         Configuration TestMimSyncExportAttributeFlowRule 
         { 

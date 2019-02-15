@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/cmart5000/MIMDSC/_apis/build/status/Microsoft.MIMDSC?branchName=master)](https://dev.azure.com/cmart5000/MIMDSC/_build/latest?definitionId=1&branchName=master)
+
 # DSC Module for MIM
 MIMDSC is a PowerShell Desired State Configuration (DSC) module for Microsoft Identity Manager (MIM).
 MIM is a powerful on-premises solution for identity integration.  Great power can result in great complexity, and keeping a MIM deployment in a known state can be challenging.  PowerShell DSC provides an elegant separation of state (the what) from ensuring that state (the how), resulting in a system of:
