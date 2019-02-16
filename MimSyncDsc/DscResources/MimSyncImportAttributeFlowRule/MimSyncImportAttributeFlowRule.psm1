@@ -174,7 +174,7 @@ function Test-TargetResource
     Write-MimSyncConfigCache -Verbose
 
     ### Find an MA XML by Name
-    $maDataXml = Select-Xml -Path (Join-Path (Get-FimSyncConfigCache) *.xml)-XPath "//ma-data[name='$ManagementAgentName']" | Select-Object -First 1
+    $maDataXml = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml)-XPath "//ma-data[name='$ManagementAgentName']" | Select-Object -First 1
     $managementAgentID = $maDataXml.Node.id
 
     ### Get the XML from the server configuration files
@@ -322,12 +322,6 @@ function Test-TargetResource
     else
     {
         Write-Error "Expected the 'Ensure' parameter to be 'Present' or 'Absent'"
-    }
-
-    if ($objectsAreTheSame -eq $false)
-    {
-        $currentObject = Get-TargetResource -ManagementAgentName $ManagementAgentName -MVObjectType $MVObjectType -MVAttribute $MVAttribute -CDObjectType $CDObjectType -Type $Type
-        Write-MimSyncDscAuditObject -FimXpathFilter $xPathFilter -ObjectTestResult $objectsAreTheSame -DscBoundParameters $PSBoundParameters -CurrentObject $currentObject
     }
 
     Write-Verbose "Returning: $objectsAreTheSame"

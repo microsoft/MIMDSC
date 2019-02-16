@@ -1,4 +1,4 @@
-<saved-mv-configuration server='CMVM24043' export-date='2019-02-13 19:02:36.997'>
+<saved-mv-configuration server='CMVM24043' export-date='2019-02-16 20:01:52.771'>
     <!--WARNING>
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -9,7 +9,7 @@
 </WARNING-->
     <mv-data>
         <format-version>1</format-version>
-        <version>14</version>
+        <version>15</version>
         <schema>
             <dsml:dsml xmlns:dsml="http://www.dsml.org/DSML" 
                 xmlns:ms-dsml="http://www.microsoft.com/MMS/DSML">
@@ -332,6 +332,38 @@
                         </direct-mapping>
                     </import-flow>
                 </import-flows>
+                <import-flows mv-attribute="DisplayName" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{C5681D2C-33D0-47EB-812E-9A90E5B691CC}">
+                        <scripted-mapping>
+                            <src-attribute>FirstName</src-attribute>
+                            <src-attribute>Initial</src-attribute>
+                            <src-attribute>LastName</src-attribute>
+                            <src-attribute>Title</src-attribute>
+                            <script-context>cd.person:FirstName,LastName-&gt;mv.SyncObject:DisplayName</script-context>
+                        </scripted-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="Fax" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{81E84777-4E79-47D8-A967-155FA3057C17}">
+                        <direct-mapping>
+                            <src-attribute intrinsic="true">dn</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="OnPremiseObjectType" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{1A6C290A-9982-4111-A2D7-F1FDBE4B2283}">
+                        <constant-mapping>
+                            <constant-value>superPerson</constant-value>
+                        </constant-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="RetentionUrl" type="ranked">
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{08CC44AA-55FC-4C60-9A90-28BE4708BDC2}">
+                        <dn-part-mapping>
+                            <dn-part>3</dn-part>
+                        </dn-part-mapping>
+                    </import-flow>
+                </import-flows>
             </import-flow-set>
             <per-ma-options>
                 <ma-options ma-id="{ECAAB0CB-AE68-47D9-8F2F-5AAE1DB0377E}">
@@ -345,7 +377,7 @@
         <provisioning type="scripted" />
         <mv-deletion></mv-deletion>
         <extension>
-            <assembly-name></assembly-name>
+            <assembly-name>ELMA-MV-Sample.dll</assembly-name>
             <application-protection>low</application-protection>
         </extension>
         <password-change-history-size>24</password-change-history-size>
