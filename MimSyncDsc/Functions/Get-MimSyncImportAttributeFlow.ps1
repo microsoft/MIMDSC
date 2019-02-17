@@ -86,17 +86,18 @@ function Get-MimSyncImportAttributeFlow
                         ###
                         if ($importFlow.'direct-mapping'.'src-attribute'.intrinsic)
                         {
-                            $srcAttribute = "<{0}>" -F $importFlow.'direct-mapping'.'src-attribute'.'#text'
+                            $srcAttribute = "{0}" -F $importFlow.'direct-mapping'.'src-attribute'.'#text'
                         }
                         else
                         {
 		                    $srcAttribute = $importFlow.'direct-mapping'.'src-attribute'
                         }
-		                $rule = New-Object PSObject
-		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'DIRECT'
-		                $rule | Add-Member -MemberType noteproperty -name 'SourceMA' -value $srcMA
+						$rule = New-Object PSObject
+						$rule | Add-Member -MemberType NoteProperty -Name 'ID' -Value $importFlow.id
+		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'direct-mapping'
+		                $rule | Add-Member -MemberType noteproperty -name 'MAName' -value $srcMA
 		                $rule | Add-Member -MemberType noteproperty -name 'CDObjectType' -value $cdObjectType
-		                $rule | Add-Member -MemberType noteproperty -name 'CDAttribute' -value $srcAttribute
+		                $rule | Add-Member -MemberType noteproperty -name 'SrcAttribute' -value $srcAttribute
 		                $rule | Add-Member -MemberType noteproperty -name 'MVObjectType' -value $mvObjectType
 		                $rule | Add-Member -MemberType noteproperty -name 'MVAttribute' -value $mvAttribute
 		                $rule | Add-Member -MemberType noteproperty -name 'ScriptContext' -value $null
@@ -116,7 +117,7 @@ function Get-MimSyncImportAttributeFlow
                         $importFlow.'scripted-mapping'.'src-attribute' | ForEach-Object {
                             if ($_.intrinsic)
                             {
-                                $srcAttributes += "<{0}>" -F $_.'#text'
+                                $srcAttributes += "{0}" -F $_.'#text'
                             }
                             else
                             {
@@ -137,11 +138,12 @@ function Get-MimSyncImportAttributeFlow
 						  $precedenceRank = $null
 						}
 		                
-		                $rule = New-Object PSObject
-		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'SCRIPTED'
-		                $rule | Add-Member -MemberType noteproperty -name 'SourceMA' -value $srcMA
+						$rule = New-Object PSObject
+						$rule | Add-Member -MemberType NoteProperty -Name 'ID' -Value $importFlow.id
+		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'scripted-mapping'
+		                $rule | Add-Member -MemberType noteproperty -name 'MAName' -value $srcMA
 		                $rule | Add-Member -MemberType noteproperty -name 'CDObjectType' -value $cdObjectType
-		                $rule | Add-Member -MemberType noteproperty -name 'CDAttribute' -value $srcAttributes
+		                $rule | Add-Member -MemberType noteproperty -name 'SrcAttribute' -value $srcAttributes
 		                $rule | Add-Member -MemberType noteproperty -name 'MVObjectType' -value $mvObjectType
 		                $rule | Add-Member -MemberType noteproperty -name 'MVAttribute' -value $mvAttribute
 						$rule | Add-Member -MemberType noteproperty -name 'ScriptContext' -value $scriptContext
@@ -170,11 +172,12 @@ function Get-MimSyncImportAttributeFlow
 							$scriptContext = $importFlow.'sync-rule-mapping'.'sync-rule-value'.'import-flow'.InnerXml
 						}
 		                
-		                $rule = New-Object PSObject
+						$rule = New-Object PSObject
+						$rule | Add-Member -MemberType NoteProperty -Name 'ID' -Value $importFlow.id
 		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value $ruleType
-		                $rule | Add-Member -MemberType noteproperty -name 'SourceMA' -value $srcMA
+		                $rule | Add-Member -MemberType noteproperty -name 'MAName' -value $srcMA
 		                $rule | Add-Member -MemberType noteproperty -name 'CDObjectType' -value $cdObjectType
-		                $rule | Add-Member -MemberType noteproperty -name 'CDAttribute' -value $srcAttributes
+		                $rule | Add-Member -MemberType noteproperty -name 'SrcAttribute' -value $srcAttributes
 		                $rule | Add-Member -MemberType noteproperty -name 'MVObjectType' -value $mvObjectType
 		                $rule | Add-Member -MemberType noteproperty -name 'MVAttribute' -value $mvAttribute
 						$rule | Add-Member -MemberType noteproperty -name 'ScriptContext' -value $scriptContext
@@ -197,9 +200,10 @@ function Get-MimSyncImportAttributeFlow
 					
 						$constantValue = $importFlow.'constant-mapping'.'constant-value'
 						
-		                $rule = New-Object PSObject
-		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value "CONSTANT"
-		                $rule | Add-Member -MemberType noteproperty -name 'SourceMA' -value $srcMA
+						$rule = New-Object PSObject
+						$rule | Add-Member -MemberType NoteProperty -Name 'ID' -Value $importFlow.id
+		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'constant-mapping'
+		                $rule | Add-Member -MemberType noteproperty -name 'MAName' -value $srcMA
 		                $rule | Add-Member -MemberType noteproperty -name 'CDObjectType' -value $cdObjectType
 		                $rule | Add-Member -MemberType noteproperty -name 'CDAttribute' -value $null
 		                $rule | Add-Member -MemberType noteproperty -name 'MVObjectType' -value $mvObjectType
@@ -208,6 +212,37 @@ function Get-MimSyncImportAttributeFlow
 						$rule | Add-Member -MemberType noteproperty -name 'PrecedenceType' -value $precedenceType
 						$rule | Add-Member -MemberType noteproperty -name 'PrecedenceRank' -value $precedenceRank
 						$rule | Add-Member -MemberType noteproperty -name 'ConstantValue' -value $constantValue
+		                                
+		                $rules += $rule                        
+						
+					}
+					elseif ($importFlow.'dn-part-mapping' -ne $null)
+					{
+						if ($precedenceType -eq 'ranked')
+						{
+							 $precedenceRank += 1
+						}
+						else
+						{
+							 $precedenceRank = $null
+						}
+
+					
+						$dnPart = $importFlow.'dn-part-mapping'.'dn-part'
+						
+						$rule = New-Object PSObject
+						$rule | Add-Member -MemberType NoteProperty -Name 'ID' -Value $importFlow.id
+		                $rule | Add-Member -MemberType noteproperty -name 'RuleType' -value 'dn-part-mapping'
+		                $rule | Add-Member -MemberType noteproperty -name 'MAName' -value $srcMA
+		                $rule | Add-Member -MemberType noteproperty -name 'CDObjectType' -value $cdObjectType
+		                $rule | Add-Member -MemberType noteproperty -name 'SrcAttribute' -value $null
+		                $rule | Add-Member -MemberType noteproperty -name 'MVObjectType' -value $mvObjectType
+		                $rule | Add-Member -MemberType noteproperty -name 'MVAttribute' -value $mvAttribute
+						$rule | Add-Member -MemberType noteproperty -name 'ScriptContext' -value $null
+						$rule | Add-Member -MemberType noteproperty -name 'PrecedenceType' -value $precedenceType
+						$rule | Add-Member -MemberType noteproperty -name 'PrecedenceRank' -value $precedenceRank
+						$rule | Add-Member -MemberType noteproperty -name 'ConstantValue' -value $null
+						$rule | Add-Member -MemberType noteproperty -name 'DNPart' -value $dnPart
 		                                
 		                $rules += $rule                        
 						
