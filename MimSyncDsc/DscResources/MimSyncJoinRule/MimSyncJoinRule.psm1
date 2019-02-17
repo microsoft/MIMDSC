@@ -39,7 +39,16 @@ function Get-TargetResource
 
     ### Get the FIM object XML from the server configuration files
     Write-Verbose "Finding join rule with a CD object type of '$CDObjectType' on management agent '$ManagementAgentName'..."
-    $fimSyncObject = Select-Xml -Path (Join-Path $svrexportPath *.xml) -XPath "//ma-data[name='$ManagementAgentName']/join/join-profile[@cd-object-type='$CDObjectType']"
+    $xPathFilter = "//ma-data[name='$ManagementAgentName']/join/join-profile[@cd-object-type='$CDObjectType']"
+    Write-Verbose "  Using XPath: $xPathFilter"
+
+    $fimSyncObject = Select-Xml -Path (Join-Path $svrexportPath *.xml) -XPath $xPathFilter
+
+    if (-not $fimSyncObject)
+    {
+        Write-Warning "Join Rule not found: $Name."
+        return
+    }
 
     $joinCriterion = @($fimSyncObject.Node.SelectNodes($DscParameterToXmlNodeMap.JoinCriterion) | Convert-MimSyncJoinCriterionToCimInstance)
 
@@ -122,9 +131,9 @@ function Test-TargetResource
             Write-Verbose "Join Rule found, diffing the properties: $($fimSyncObject.Path)"
             $objectsAreTheSame = $true
 
-            foreach ($dscResourceProperty in Get-DscResource -Name cMimSyncJoinRule | Select-Object -ExpandProperty Properties)
+            foreach ($dscResourceProperty in Get-DscResource -Name MimSyncJoinRule | Select-Object -ExpandProperty Properties)
             {
-                if ($dscResourceProperty.Name -in 'Ensure','DependsOn','ManagementAgentName','CDObjectType')
+                if ($dscResourceProperty.Name -in 'Ensure','DependsOn','PsDscRunAsCredential','ManagementAgentName','CDObjectType')
                 {
                     Write-Verbose "  Skipping system-owned attribute: $($dscResourceProperty.Name)"
                     continue
@@ -140,7 +149,7 @@ function Test-TargetResource
                     Write-Verbose "    From DSC: $($valuesFromDSC.count)"
                     Write-Verbose "    From FIM: $($valuesFromFIM.count)"
 
-                    $JoinCriterionCompareResults = Compare-Object -ReferenceObject $valuesFromDSC -DifferenceObject $valuesFromFIM -Property MVObjectType,ResolutionType,ResolutionScriptContext 
+                    $JoinCriterionCompareResults = Compare-Object -ReferenceObject $valuesFromDSC -DifferenceObject $valuesFromFIM -Property MVObjectType,ResolutionType,ResolutionScriptContext,Order 
                     $AttributeMappingCompareResults = Compare-Object -ReferenceObject $valuesFromDSC.AttributeMapping -DifferenceObject $valuesFromFIM.AttributeMapping -Property MVAttribute,CDAttribute,MappingType,ScriptContext
                     
                     if ($JoinCriterionCompareResults)
@@ -186,6 +195,7 @@ function Test-TargetResource
                 }
             }
 
+            Write-Verbose "Returning: $objectsAreTheSame"
             return $objectsAreTheSame
         }
     }
@@ -268,6 +278,9 @@ function Convert-MimSyncJoinCriterionToCimInstance
                    Position=0)] 
         $JoinCriterion
     )
+    Begin{
+        $Order = 0
+    }
     Process
     {
         $AttributeMappings = @()
@@ -299,8 +312,10 @@ function Convert-MimSyncJoinCriterionToCimInstance
             MVObjectType            = $JoinCriterion.search.'mv-object-type'     -as [String]
             ResolutionType          = $JoinCriterion.resolution.type             -as [String]
             ResolutionScriptContext = $JoinCriterion.resolution.'script-context' -as [String]
+            Order                   = $Order                                     -as [Uint16]
             AttributeMapping        = $AttributeMappings                         -as [CimInstance[]]
         }
+        $Order++
         <#
         if ($DirectMappings.Count -gt 0)
         {

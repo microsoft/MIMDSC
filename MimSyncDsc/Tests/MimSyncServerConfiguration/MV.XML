@@ -1,4 +1,4 @@
-<saved-mv-configuration server='CMVM24043' export-date='2019-02-16 20:01:52.771'>
+<saved-mv-configuration server='CMVM24043' export-date='2019-02-17 15:50:33.878'>
     <!--WARNING>
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -9,11 +9,21 @@
 </WARNING-->
     <mv-data>
         <format-version>1</format-version>
-        <version>15</version>
+        <version>16</version>
         <schema>
             <dsml:dsml xmlns:dsml="http://www.dsml.org/DSML" 
                 xmlns:ms-dsml="http://www.microsoft.com/MMS/DSML">
                 <dsml:directory-schema>
+                    <dsml:class id="Contact" type="structural">
+                        <dsml:name>Contact</dsml:name>
+                        <dsml:attribute ref="#Alias" required="false" />
+                        <dsml:attribute ref="#City" required="false" />
+                        <dsml:attribute ref="#DisplayName" required="false" />
+                        <dsml:attribute ref="#FirstName" required="false" />
+                        <dsml:attribute ref="#Initials" required="false" />
+                        <dsml:attribute ref="#LastName" required="false" />
+                        <dsml:attribute ref="#Title" required="false" />
+                    </dsml:class>
                     <dsml:class id="SyncObject" type="structural">
                         <dsml:name>SyncObject</dsml:name>
                         <dsml:attribute ref="#Alias" required="false" />

@@ -1,4 +1,4 @@
-<saved-ma-configuration server='CMVM24043' export-date='2019-02-16 20:01:52.771'>
+<saved-ma-configuration server='CMVM24043' export-date='2019-02-17 15:50:33.878'>
     <!--WARNING>
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -16,8 +16,8 @@
         <ma-listname/>
         <ma-companyname/>
         <creation-time>2019-02-13 06:35:57.677</creation-time>
-        <last-modification-time>2019-02-16 19:56:25.421</last-modification-time>
-        <version>8</version>
+        <last-modification-time>2019-02-17 15:50:16.826</last-modification-time>
+        <version>9</version>
         <internal-version>0</internal-version>
         <password-sync-allowed>0</password-sync-allowed>
         <schema>
@@ -134,9 +134,56 @@
                 </filter-alternative>
             </filter-set>
         </stay-disconnector>
-        <join />
+        <join>
+            <join-profile cd-object-type="contact">
+                <join-criterion id="{94012C24-7B5F-4AAA-BF49-A8A92AC0D568}">
+                    <search mv-object-type="Contact">
+                        <attribute-mapping mv-attribute="FirstName">
+                            <direct-mapping>
+                                <src-attribute>FirstName</src-attribute>
+                            </direct-mapping>
+                        </attribute-mapping>
+                        <attribute-mapping mv-attribute="LastName">
+                            <direct-mapping>
+                                <src-attribute>LastName</src-attribute>
+                            </direct-mapping>
+                        </attribute-mapping>
+                    </search>
+                    <resolution type="none">
+                        <script-context></script-context>
+                    </resolution>
+                </join-criterion>
+                <join-criterion id="{357AA84E-B9CD-487F-8EC7-E4C6DC931E43}">
+                    <search mv-object-type="Contact">
+                        <attribute-mapping mv-attribute="Alias">
+                            <scripted-mapping>
+                                <script-context>cd.contact#2:FirstName,LastName-&gt;Alias</script-context>
+                                <src-attribute>FirstName</src-attribute>
+                                <src-attribute>LastName</src-attribute>
+                            </scripted-mapping>
+                        </attribute-mapping>
+                    </search>
+                    <resolution type="scripted">
+                        <script-context>cd.contact#2</script-context>
+                    </resolution>
+                </join-criterion>
+                <join-criterion id="{B92AD32F-7F84-49A7-A385-63FB17FC3EAE}">
+                    <search>
+                        <attribute-mapping mv-attribute="Alias">
+                            <direct-mapping>
+                                <src-attribute>UserID</src-attribute>
+                            </direct-mapping>
+                        </attribute-mapping>
+                    </search>
+                    <resolution type="none">
+                        <script-context></script-context>
+                    </resolution>
+                </join-criterion>
+            </join-profile>
+        </join>
         <projection>
-            <class-mapping type="declared" id="{EEDE3148-2D3A-4D2C-9534-BE4C80E7F5E1}" cd-object-type="person">
+            <class-mapping type="scripted" id="{FFFA5355-F079-45BB-8BED-AD0AAC9DEE30}" cd-object-type="contact"></class-mapping>
+            <class-mapping type="declared" id="{EF14793A-F3B3-4B55-B3D4-B14613780688}" cd-object-type="person">
                 <mv-object-type>SyncObject</mv-object-type>
             </class-mapping>
         </projection>
@@ -203,7 +250,7 @@
                             <code_page_description>Western European (Windows)</code_page_description>
                         </properties>
                         <partitions>
-                            <partition cd_name="default" guid="{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}" version="8">
+                            <partition cd_name="default" guid="{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}" version="9">
                                 <object_class>person</object_class>
                                 <object_class>contact</object_class>
                                 <object_class>robot</object_class>
@@ -405,8 +452,8 @@
                 <id>{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}</id>
                 <name>default</name>
                 <creation-time>2019-02-13 06:35:57.677</creation-time>
-                <last-modification-time>2019-02-16 19:56:25.407</last-modification-time>
-                <version>9</version>
+                <last-modification-time>2019-02-17 15:50:16.827</last-modification-time>
+                <version>10</version>
                 <selected>1</selected>
                 <filter>
                     <object-classes>
