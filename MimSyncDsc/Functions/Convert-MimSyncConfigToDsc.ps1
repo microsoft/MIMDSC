@@ -280,6 +280,28 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion Join rules
 
+    #region Projection rules
+    $projectionRules = Get-MimSyncProjectionRule -ServerConfigurationFolder "$env:ProgramData\MimSyncDsc\Svrexport\" 
+    foreach ($projectionRule in $projectionRules) {
+        $dscConfigScriptItems += @'
+    ProjectionRule {1}
+    {{   
+        ManagementAgentName    = '{0}'        
+        CDObjectType           = '{1}'
+        Type                   = '{2}'
+        MVObjectType           = '{3}'
+        Ensure                 = 'Present'
+    }}
+'@ -f @(
+    $projectionRule.MAName
+    $projectionRule.CDObjectType
+    $projectionRule.Type
+    $projectionRule.MVObjectType
+)
+    }
+
+    #endregion Projection rules
+
     $dscConfigScriptItems
 
 }

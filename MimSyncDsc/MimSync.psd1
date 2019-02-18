@@ -68,6 +68,7 @@ FunctionsToExport = @(
     'Format-MimSynchronizationConfigurationFiles'
     'Format-XML'
     'Get-MimSyncExportAttributeFlow'
+    'Get-MimSyncProjectionRule'
     'Get-MimRegistryKey'
     'Get-MimSyncSyncConfigCache'
     'Get-MimSyncPath'

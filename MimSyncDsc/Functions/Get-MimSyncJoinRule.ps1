@@ -2,13 +2,13 @@ function Get-MimSyncJoinRule
 {
 <#
    .SYNOPSIS 
-   Gets the Join and Projection Rules from Sync Server Configuration
+   Gets the Join Rules from Sync Server Configuration
 
    .DESCRIPTION
-   Reads the server configuration from the XML files, and outputs the join and projection rules as PSObjects
+   Reads the server configuration from the XML files, and outputs the join rules as PSObjects
 
    .OUTPUTS
-   PSObjects containing the synchronization server join and projection rules
+   PSObjects containing the synchronization server join rules
    
    .EXAMPLE
    Get-MimSyncJoinRule -ServerConfigurationFolder "C:\Temp\Zoomit\ServerConfiguration"
@@ -26,7 +26,7 @@ function Get-MimSyncJoinRule
    		### This is where the rules will be aggregated before we output them
 		$rules = @()
 		
-		### Export attribute flow rules are contained in the ma-data nodes of the MA*.XML files
+		### join rules are contained in the ma-data nodes of the MA*.XML files
 		$maFiles = @(get-item (Join-Path $ServerConfigurationFolder "MA-*.xml"))
 				
 		foreach ($maFile in $maFiles)
