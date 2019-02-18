@@ -173,12 +173,6 @@ function Test-TargetResource
         #endregion
     }
 
-    if ($objectsAreTheSame -eq $false)
-    {
-        $currentObject = Get-TargetResource -MVObjectType $MVObjectType
-        Write-MimSyncDscAuditObject -FimXpathFilter $xPathFilter -ObjectTestResult $objectsAreTheSame -DscBoundParameters $PSBoundParameters -CurrentObject $currentObject
-    }
-
     Write-Verbose "Returning: $objectsAreTheSame"
     return $objectsAreTheSame
 }
