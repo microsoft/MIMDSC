@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="50" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-02-17" time="22:04:46">
+  <environment user="cmart" machine-name="CMARTBOOK" cwd="C:\Users\cmart\Source\MIMDSC" user-domain="REDMOND" platform="Microsoft Windows 10 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition4" nunit-version="2.5.8.0" os-version="10.0.17763" clr-version="4.0.30319.42000" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Powershell" name="Pester" executed="True" result="Success" success="True" time="27.0227" asserts="0">
+    <results>
+      <test-suite type="TestFixture" name="DscResource Designer Validation for MimSyncExportAttributeFlowRule" executed="True" result="Success" success="True" time="2.954" asserts="0" description="DscResource Designer Validation for MimSyncExportAttributeFlowRule">
+        <results>
+          <test-case description="Test-xDscResource Should Pass" name="DscResource Designer Validation for MimSyncExportAttributeFlowRule.Test-xDscResource Should Pass" time="2.629" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Test-xDscSchema Should Pass" name="DscResource Designer Validation for MimSyncExportAttributeFlowRule.Test-xDscSchema Should Pass" time="0.325" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="DscResource Designer Validation for MimSyncFilterRule" executed="True" result="Success" success="True" time="2.4401" asserts="0" description="DscResource Designer Validation for MimSyncFilterRule">
+        <results>
+          <test-case description="Test-xDscResource Should Pass" name="DscResource Designer Validation for MimSyncFilterRule.Test-xDscResource Should Pass" time="2.0745" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Test-xDscSchema Should Pass" name="DscResource Designer Validation for MimSyncFilterRule.Test-xDscSchema Should Pass" time="0.3656" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="DscResource Designer Validation for MimSyncImportAttributeFlowRule" executed="True" result="Success" success="True" time="2.3581" asserts="0" description="DscResource Designer Validation for MimSyncImportAttributeFlowRule">
+        <results>
+          <test-case description="Test-xDscResource Should Pass" name="DscResource Designer Validation for MimSyncImportAttributeFlowRule.Test-xDscResource Should Pass" time="2.0018" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Test-xDscSchema Should Pass" name="DscResource Designer Validation for MimSyncImportAttributeFlowRule.Test-xDscSchema Should Pass" time="0.3563" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="DscResource Designer Validation for MimSyncJoinRule" executed="True" result="Success" success="True" time="2.4166" asserts="0" description="DscResource Designer Validation for MimSyncJoinRule">
+        <results>
+          <test-case description="Test-xDscResource Should Pass" name="DscResource Designer Validation for MimSyncJoinRule.Test-xDscResource Should Pass" time="2.0364" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Test-xDscSchema Should Pass" name="DscResource Designer Validation for MimSyncJoinRule.Test-xDscSchema Should Pass" time="0.3803" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="DscResource Designer Validation for MimSyncProjectionRule" executed="True" result="Success" success="True" time="2.2265" asserts="0" description="DscResource Designer Validation for MimSyncProjectionRule">
+        <results>
+          <test-case description="Test-xDscResource Should Pass" name="DscResource Designer Validation for MimSyncProjectionRule.Test-xDscResource Should Pass" time="1.937" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Test-xDscSchema Should Pass" name="DscResource Designer Validation for MimSyncProjectionRule.Test-xDscSchema Should Pass" time="0.2895" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly" executed="True" result="Success" success="True" time="1.0534" asserts="0" description="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly">
+        <results>
+          <test-case description="Direct EAF Rule - desired state" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Direct EAF Rule - desired state" time="0.6501" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted EAF Rule - desired state" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Scripted EAF Rule - desired state" time="0.0536" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted EAF Rule - multiple source attributes - desired state" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Scripted EAF Rule - multiple source attributes - desired state" time="0.0484" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted EAF Rule - multiple source attributes - incorrect suppress-deletion" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Scripted EAF Rule - multiple source attributes - incorrect suppress-deletion" time="0.0697" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted EAF Rule - multiple source attributes - incorrect src-attribute" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Scripted EAF Rule - multiple source attributes - incorrect src-attribute" time="0.0895" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Constant EAF Rule - desired state" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Constant EAF Rule - desired state" time="0.0558" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Constant EAF Rule - incorrect contant-value" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Constant EAF Rule - incorrect contant-value" time="0.0486" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Constant EAF Rule - missing EAF rule" name="MimSyncExportAttributeFlowRule - calling Test-TargetResource Directly.Constant EAF Rule - missing EAF rule" time="0.0377" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly" executed="True" result="Success" success="True" time="0.2525" asserts="0" description="MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly">
+        <results>
+          <test-case description="Direct EAF Rule - desired state" name="MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly.Direct EAF Rule - desired state" time="0.1139" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted EAF Rule - desired state" name="MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly.Scripted EAF Rule - desired state" time="0.0373" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Direct EAF Rule - undesirable state" name="MimSyncExportAttributeFlowRule - calling Get-TargetResource Directly.Direct EAF Rule - undesirable state" time="0.1013" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncFilterRule - calling Test-TargetResource Directly" executed="True" result="Success" success="True" time="7.5102" asserts="0" description="MimSyncFilterRule - calling Test-TargetResource Directly">
+        <results>
+          <test-case description="Scripted Filter Rule - desired state" name="MimSyncFilterRule - calling Test-TargetResource Directly.Scripted Filter Rule - desired state" time="2.1715" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted Filter Rule - undesirable state" name="MimSyncFilterRule - calling Test-TargetResource Directly.Scripted Filter Rule - undesirable state" time="1.6947" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Declared Filter Rule - desired state" name="MimSyncFilterRule - calling Test-TargetResource Directly.Declared Filter Rule - desired state" time="1.8477" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Declared Filter Rule - filter rules in wrong order" name="MimSyncFilterRule - calling Test-TargetResource Directly.Declared Filter Rule - filter rules in wrong order" time="1.7964" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncFilterRule - calling Get-TargetResource Directly" executed="True" result="Success" success="True" time="0.147" asserts="0" description="MimSyncFilterRule - calling Get-TargetResource Directly">
+        <results>
+          <test-case description="Scripted Filter Rule - desired state" name="MimSyncFilterRule - calling Get-TargetResource Directly.Scripted Filter Rule - desired state" time="0.0855" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted Filter Rule - undesirable state" name="MimSyncFilterRule - calling Get-TargetResource Directly.Scripted Filter Rule - undesirable state" time="0.0615" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly" executed="True" result="Success" success="True" time="1.2367" asserts="0" description="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly">
+        <results>
+          <test-case description="Direct IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Direct IAF Rule - desired state" time="0.6719" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Direct IAF Rule - rogue state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Direct IAF Rule - rogue state" time="0.0645" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Direct IAF Rule - missing IAF rule" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Direct IAF Rule - missing IAF rule" time="0.0584" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Direct-Mapping IAF Rule - dn-mapping desired state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Direct-Mapping IAF Rule - dn-mapping desired state" time="0.0628" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Scripted IAF Rule - desired state" time="0.0752" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted IAF Rule - missing one source attribute" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Scripted IAF Rule - missing one source attribute" time="0.0761" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted IAF Rule - missing IAF rule" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Scripted IAF Rule - missing IAF rule" time="0.0374" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Constant IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.Constant IAF Rule - desired state" time="0.0628" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="DN Mapping IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.DN Mapping IAF Rule - desired state" time="0.0716" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="DN Mapping IAF Rule - incorrect DN part" name="MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly.DN Mapping IAF Rule - incorrect DN part" time="0.056" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly" executed="True" result="Success" success="True" time="0.1901" asserts="0" description="MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly">
+        <results>
+          <test-case description="Direct IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly.Direct IAF Rule - desired state" time="0.0923" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted IAF Rule - desired state" name="MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly.Scripted IAF Rule - desired state" time="0.0458" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Direct EAF Rule - undesirable state" name="MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly.Direct EAF Rule - undesirable state" time="0.052" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncJoinRule - calling Test-TargetResource Directly" executed="True" result="Success" success="True" time="3.4272" asserts="0" description="MimSyncJoinRule - calling Test-TargetResource Directly">
+        <results>
+          <test-case description="Mega Join Rule - desired state" name="MimSyncJoinRule - calling Test-TargetResource Directly.Mega Join Rule - desired state" time="1.7899" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Mega Join Rule - incorrect join rule order" name="MimSyncJoinRule - calling Test-TargetResource Directly.Mega Join Rule - incorrect join rule order" time="1.6373" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncJoinRule - calling Get-TargetResource Directly" executed="True" result="Success" success="True" time="0.1204" asserts="0" description="MimSyncJoinRule - calling Get-TargetResource Directly">
+        <results>
+          <test-case description="Missing Join Rule" name="MimSyncJoinRule - calling Get-TargetResource Directly.Missing Join Rule" time="0.072" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Expected Join Rule" name="MimSyncJoinRule - calling Get-TargetResource Directly.Expected Join Rule" time="0.0484" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncProjectionRule - calling Test-TargetResource Directly" executed="True" result="Success" success="True" time="0.5787" asserts="0" description="MimSyncProjectionRule - calling Test-TargetResource Directly">
+        <results>
+          <test-case description="Declared Projection Rule - desired state" name="MimSyncProjectionRule - calling Test-TargetResource Directly.Declared Projection Rule - desired state" time="0.4238" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Declared Projection Rule - incorrect MVObjectType" name="MimSyncProjectionRule - calling Test-TargetResource Directly.Declared Projection Rule - incorrect MVObjectType" time="0.0606" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted Projection Rule - desired state" name="MimSyncProjectionRule - calling Test-TargetResource Directly.Scripted Projection Rule - desired state" time="0.0566" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Scripted Projection Rule - missing rule" name="MimSyncProjectionRule - calling Test-TargetResource Directly.Scripted Projection Rule - missing rule" time="0.0378" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="MimSyncProjectionRule - calling Get-TargetResource Directly" executed="True" result="Success" success="True" time="0.111" asserts="0" description="MimSyncProjectionRule - calling Get-TargetResource Directly">
+        <results>
+          <test-case description="Missing Projection Rule" name="MimSyncProjectionRule - calling Get-TargetResource Directly.Missing Projection Rule" time="0.0794" asserts="0" success="True" result="Success" executed="True" />
+          <test-case description="Expected Projection Rule" name="MimSyncProjectionRule - calling Get-TargetResource Directly.Expected Projection Rule" time="0.0316" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
