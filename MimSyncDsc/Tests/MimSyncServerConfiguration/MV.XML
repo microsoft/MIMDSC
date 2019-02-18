@@ -1,4 +1,4 @@
-<saved-mv-configuration server='CMVM24043' export-date='2019-02-17 15:50:33.878'>
+<saved-mv-configuration server='CMVM24043' export-date='2019-02-18 07:21:55.534'>
     <!--WARNING>
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -9,7 +9,7 @@
 </WARNING-->
     <mv-data>
         <format-version>1</format-version>
-        <version>16</version>
+        <version>18</version>
         <schema>
             <dsml:dsml xmlns:dsml="http://www.dsml.org/DSML" 
                 xmlns:ms-dsml="http://www.microsoft.com/MMS/DSML">
@@ -385,7 +385,12 @@
             </per-ma-options>
         </import-attribute-flow>
         <provisioning type="scripted" />
-        <mv-deletion></mv-deletion>
+        <mv-deletion>
+            <mv-deletion-rule mv-object-type="Contact" id="{AC35E2BD-21DE-4C05-B381-1E82AA46A528}" type="declared-any">
+                <src-ma>{9C3614F6-F975-4F32-9504-C821CBE36471}</src-ma>
+            </mv-deletion-rule>
+            <mv-deletion-rule mv-object-type="SyncObject" id="{AFED6EEB-A7A2-4D5B-B24B-1E2892932EFF}" type="scripted" />
+        </mv-deletion>
         <extension>
             <assembly-name>ELMA-MV-Sample.dll</assembly-name>
             <application-protection>low</application-protection>
