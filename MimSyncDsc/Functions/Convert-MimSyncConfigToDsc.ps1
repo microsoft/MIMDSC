@@ -302,6 +302,24 @@ function Convert-MimSyncConfigToDsc {
 
     #endregion Projection rules
 
+    #region MVOptions
+
+    $mvData = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath "//mv-data"
+    $dscConfigScriptItems += @'
+    MVOptions MimSyncMVOptions
+    {{
+        FakeIdentifier                   = 'MVOptions'
+        ProvisioningType                 = '{0}'
+        ExtensionAssemblyName            = '{1}'
+        ExtensionApplicationProtection   = '{2}'
+    }}
+'@ -f @(
+    $mvData.Node.provisioning.type
+    $mvData.Node.extension.'assembly-name'
+    $mvData.Node.extension.'application-protection'
+)
+    #endregion MVOptions
+
     $dscConfigScriptItems
 
 }
