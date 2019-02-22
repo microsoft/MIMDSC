@@ -47,7 +47,7 @@ PowerShellVersion = '5.0'
 # RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
-RequiredAssemblies = @('xmldiffpatch.dll')
+#RequiredAssemblies = @('xmldiffpatch.dll')
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
 # ScriptsToProcess = @()
@@ -59,7 +59,7 @@ RequiredAssemblies = @('xmldiffpatch.dll')
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-# NestedModules = @()
+#NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
@@ -90,7 +90,7 @@ VariablesToExport = '*'
 AliasesToExport = @()
 
 # DSC resources to export from this module
-# DscResourcesToExport = @()
+#DscResourcesToExport = @()
 
 # List of all modules packaged with this module
 # ModuleList = @()
@@ -131,4 +131,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-
