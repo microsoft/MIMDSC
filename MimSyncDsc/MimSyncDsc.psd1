@@ -66,6 +66,7 @@ FunctionsToExport = @(
     'Convert-MimSyncConfigToDsc'
     'Convert-MimSyncJoinCriterionToCimInstance'
     'Convert-MimSyncMVObjectTypeToCimInstance'
+    'Convert-MimSyncRunStepToCimInstance'
     'Format-MimSynchronizationConfigurationFiles'
     'Format-XML'
     'Get-MimSyncExportAttributeFlow'
