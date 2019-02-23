@@ -22,7 +22,7 @@ Describe -Tag 'Build' 'MimSyncMaData - calling Test-TargetResource Directly'{
         ApplicationProtection   = 'low'
     }
     $passwordSync = New-CimInstance -ClassName MimSyncPasswordSync -ClientOnly -Namespace root/microsoft/windows/desiredstateconfiguration -Property @{
-        AllowLowSecurity        = $true
+        AllowLowSecurity        = $false
         MaximumRetryCount       = 10
         RetryInterval           = 60
     }
@@ -131,7 +131,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMaData - using the Local
                         ApplicationProtection   = 'low'
                     }
                     PasswordSync = PasswordSync{
-                        AllowLowSecurity        = $true
+                        AllowLowSecurity        = $false
                         MaximumRetryCount       = 10
                         RetryInterval           = 60
                     }

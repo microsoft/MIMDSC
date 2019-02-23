@@ -65,6 +65,7 @@ PowerShellVersion = '5.0'
 FunctionsToExport = @(
     'Convert-MimSyncConfigToDsc'
     'Convert-MimSyncJoinCriterionToCimInstance'
+    'Convert-MimSyncMVObjectTypeToCimInstance'
     'Format-MimSynchronizationConfigurationFiles'
     'Format-XML'
     'Get-MimSyncExportAttributeFlow'
