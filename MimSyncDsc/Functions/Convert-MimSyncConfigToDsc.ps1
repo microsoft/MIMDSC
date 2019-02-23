@@ -390,6 +390,31 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion MAData
 
+    #region MVObjectType
+    $namespace = @{dsml="http://www.dsml.org/DSML"; 'ms-dsml'="http://www.microsoft.com/MMS/DSML"}
+
+    $mvObjectTypes = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath "//mv-data/schema/dsml:dsml/dsml:directory-schema/dsml:class" -Namespace $namespace
+    foreach ($mvObjectType in $mvObjectTypes.Node)
+    {
+        $mvAttributes = ($mvObjectType.attribute | ForEach-Object { "MVAttributeBinding {ID='$($PSItem.ref)';   Required=`$$($PSItem.required)}"}) -join "`n`t"
+        $dscConfigScriptItems += @'
+        MVObjectType MVObjectType{0}
+        {{
+            ID    = '{0}'
+            Type  = '{1}'
+            Attributes = @(
+                {2}
+            )
+            Ensure = 'Present'
+        }}
+'@ -f @(
+        $mvObjectType.ID
+        $mvObjectType.Type
+        $mvAttributes
+        )
+    }
+    #endregion MVObjectType
+
     $dscConfigScriptItems
 
 }
