@@ -342,8 +342,54 @@ function Convert-MimSyncConfigToDsc {
     
     #endregion MVOptions
 
+    #region MAData
+    $maDatas = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath "//ma-data"
+    foreach ($maData in $maDatas.Node)
+    {
+        $dscConfigScriptItems += @'
+        MaData MimSyncMAData{0}
+        {{
+            Name    = '{0}'
+            AttributeInclusion           = @({1})
+            Category                 = '{2}'
+            ControllerConfiguration = ControllerConfiguration{{
+                ApplicationArchitecture = '{3}'
+                ApplicationProtection   = '{4}'
+            }}
+            Extension = Extension{{
+                AssemblyName            = '{5}'
+                ApplicationProtection   = '{6}'
+            }}
+            PasswordSync = PasswordSync{{
+                AllowLowSecurity        = ${7}
+                MaximumRetryCount       = {8}
+                RetryInterval           = {9}
+            }}
+            PasswordSyncAllowed         = ${10}
+            ProvisioningCleanup = ProvisioningCleanup{{
+                Type                    = '{11}'
+                Action                  = '{12}'
+            }}
+            Ensure = 'Present'
+        }}
+'@ -f @(
+        $maData.name
+        (($maData.'attribute-inclusion'.attribute | ForEach-Object {"'$PSItem'"}) -join ",`n`t")
+        $maData.category
+        $maData.'controller-configuration'.'application-architecture'
+        $maData.'controller-configuration'.'application-protection'
+        $maData.extension.'assembly-name'
+        $maData.extension.'application-protection'
+        ($maData.'password-sync'.'allow-low-security' -as [int] -as [Boolean])
+        $maData.'password-sync'.'maximum-retry-count'
+        $maData.'password-sync'.'retry-interval'
+        ($maData.'password-sync-allowed' -as [int] -as [Boolean])
+        $maData.'provisioning-cleanup'.type
+        $maData.'provisioning-cleanup'.action
+        )
+    }
+    #endregion MAData
+
     $dscConfigScriptItems
 
 }
-
-$mvData.Node.'mv-deletion'.'mv-deletion-rule'[0]

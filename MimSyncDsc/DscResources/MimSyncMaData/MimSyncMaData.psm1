@@ -264,7 +264,7 @@ function Test-TargetResource
                     $fimValue = $fimSyncObject.Node.SelectSingleNode($DscParameterToXmlNodeMap.($dscResourceProperty.Name))
 
                     $valueFromDSC = "MaximumRetryCount={0} RetryInterval={1} AllowLowSecurity={2}" -F $PasswordSync.MaximumRetryCount, $PasswordSync.RetryInterval, $PasswordSync.AllowLowSecurity
-                    $valueFromFIM = "MaximumRetryCount={0} RetryInterval={1} AllowLowSecurity={2}" -F $fimValue.'maximum-retry-count', $fimValue.'retry-interval', ($fimValue.'allow-low-security' -as [Boolean])
+                    $valueFromFIM = "MaximumRetryCount={0} RetryInterval={1} AllowLowSecurity={2}" -F $fimValue.'maximum-retry-count', $fimValue.'retry-interval', ($fimValue.'allow-low-security' -as [Int] -as [Boolean])
  
                     Write-Verbose "    From DSC: $valueFromDSC"
                     Write-Verbose "    From FIM: $valueFromFIM"
