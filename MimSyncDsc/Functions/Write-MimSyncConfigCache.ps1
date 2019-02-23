@@ -38,7 +38,7 @@ function Write-MimSyncConfigCache
         Write-Verbose "Cache expired, wipe it"
         Remove-Item -Path $CacheLocation -Recurse
 
-        Get-SyncServerXml -Path $CacheLocation     
+        Get-MimSyncServerXml -Path $CacheLocation     
     }
     else
     {
