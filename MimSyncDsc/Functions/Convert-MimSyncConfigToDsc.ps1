@@ -320,6 +320,30 @@ function Convert-MimSyncConfigToDsc {
 )
     #endregion MVOptions
 
+    #region MVDeletionRule
+
+    $mvDeletionRules = Get-MimSyncMVDeletionRule
+    foreach($mvDeletionRule in Get-MimSyncMVDeletionRule)
+    {
+        $dscConfigScriptItems += @'
+        MVDeletionRule MimSyncMVDeletionRule{0}
+        {{
+            MVObjectType         = '{0}'
+            Type                 = '{1}'
+            ManagementAgentName  = @({2})
+        }}
+'@ -f @(
+    $mvDeletionRule.MVObjectType
+    $mvDeletionRule.Type
+    (($mvDeletionRule.ManagementAgentName | ForEach-Object {"'$PSItem'"}) -join ',')
+)
+    }
+
+    
+    #endregion MVOptions
+
     $dscConfigScriptItems
 
 }
+
+$mvData.Node.'mv-deletion'.'mv-deletion-rule'[0]

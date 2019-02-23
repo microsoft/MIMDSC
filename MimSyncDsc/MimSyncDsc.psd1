@@ -75,6 +75,7 @@ FunctionsToExport = @(
     'Get-MimSyncImportAttributeFlow'
     'Get-MimSyncManagementAgentXml'
     'Get-MimSyncMetaverseSchema'
+    'Get-MimSyncMVDeletionRule'
     'Get-MimSyncServerXml'
     'Write-MimSyncConfigCache'
     'Write-MimDscAuditObject'
