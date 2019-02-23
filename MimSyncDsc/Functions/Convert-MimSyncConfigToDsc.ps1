@@ -415,6 +415,50 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion MVObjectType
 
+    #region MVAttributeType
+    $namespace = @{dsml="http://www.dsml.org/DSML"; 'ms-dsml'="http://www.microsoft.com/MMS/DSML"}
+
+    $mvAttributeTypes = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath "//mv-data/schema/dsml:dsml/dsml:directory-schema/dsml:attribute-type" -Namespace $namespace
+    foreach ($mvAttributeType in $mvAttributeTypes.Node)
+    {
+        $singleValue = 'false'
+        if ($mvAttributeType.'single-value')
+        {
+            $singleValue = $mvAttributeType.'single-value'
+        }
+
+        $indexed = 'false'
+        if ($mvAttributeType.indexed)
+        {
+            $indexed = $mvAttributeType.indexed
+        }
+
+        $indexable = 'false'
+        if ($mvAttributeType.indexable)
+        {
+            $indexable = $mvAttributeType.indexable
+        }
+
+        $dscConfigScriptItems += @'
+        MVAttributeType MVAttributeType{0}
+        {{
+            ID          = '{0}'
+            SingleValue = ${1}
+            Indexable   = ${2}
+            Indexed     = ${3}
+            Syntax      = '{4}'
+            Ensure      = 'present'
+        }}
+'@ -f @(
+        $mvAttributeType.id
+        $singleValue
+        $indexable
+        $indexed
+        $mvAttributeType.syntax
+        )
+    }
+    #endregion MVAttributeType
+
     $dscConfigScriptItems
 
 }
