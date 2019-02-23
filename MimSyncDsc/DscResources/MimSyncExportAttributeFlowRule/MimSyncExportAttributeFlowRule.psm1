@@ -1,5 +1,4 @@
-﻿Import-Module MimSyncDsc
-function Get-TargetResource
+﻿function Get-TargetResource
 {
 	[CmdletBinding()]
 	[OutputType([System.Collections.Hashtable])]
