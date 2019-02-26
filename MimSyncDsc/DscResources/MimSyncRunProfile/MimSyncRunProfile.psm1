@@ -121,9 +121,9 @@ function Test-TargetResource
             Write-Verbose "Run Profile found, diffing the properties: $($fimSyncObject.Path)"
             $objectsAreTheSame = $true
 
-            foreach ($dscResourceProperty in Get-DscResource -Name cFimSyncRunProfile | Select-Object -ExpandProperty Properties)
+            foreach ($dscResourceProperty in Get-DscResource -Name MimSyncRunProfile | Select-Object -ExpandProperty Properties)
             {
-                if ($dscResourceProperty.Name -in 'Ensure','DependsOn','ManagementAgentName')
+                if ($dscResourceProperty.Name -in 'Ensure','DependsOn','ManagementAgentName','PsDscRunAsCredential')
                 {
                     Write-Verbose "  Skipping system-owned attribute: $($dscResourceProperty.Name)"
                     continue
@@ -139,7 +139,8 @@ function Test-TargetResource
                     Write-Verbose "    From DSC: $($valuesFromDSC.count)"
                     Write-Verbose "    From FIM: $($valuesFromFIM.count)"
 
-                    $valueCompare = Compare-Object -ReferenceObject $valuesFromDSC -DifferenceObject $valuesFromFIM -Property StepType,StepSubtype,PartitionIdentifier,DropFileName,PageSize,Timeout,ObjectDeleteLimit,ObjectProcessLimit
+                    #TODO - make this compare smarter - for example it needs to interpret a missing input as equal to a present input that has a null value
+                    $valueCompare = Compare-Object -ReferenceObject $valuesFromDSC -DifferenceObject $valuesFromFIM -Property StepType,StepSubtype,PartitionIdentifier,DropFileName,PageSize,Timeout,ObjectDeleteLimit,ObjectProcessLimit,InputFile
                     if ($valueCompare)
                     {
                         Write-Warning "  '$($dscResourceProperty.Name)' property is not the same."

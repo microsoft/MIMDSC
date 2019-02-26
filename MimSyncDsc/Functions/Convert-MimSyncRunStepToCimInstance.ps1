@@ -58,9 +58,10 @@ function Convert-MimSyncRunStepToCimInstance
             PartitionIdentifier = $RunStep.partition -as [String]
             StepSubtype         = '' -as [String[]]
             BatchSize           = $RunStep.threshold.'batch-size' -as [UInt32]
+            InputFile           = $RunStep.'custom-data'.'run-config'.'input-file' -as [String]
             PageSize            = $RunStep.'custom-data'.'adma-step-data'.'page-size' -as [UInt32]
             Timeout             = $RunStep.'custom-data'.'adma-step-data'.'time-limit' -as [UInt32]
-            LogFilePath         = $RunStep.'custom-data'.'run-config'.'input-file' -as [String]
+            LogFilePath         = $RunStep.'custom-data'.'run-config'.'input-file' -as [String] #TODO - this takes the wrong input
             DropFileName        = $RunStep.'dropfile-name' -as [String]
             ObjectDeleteLimit   = $RunStep.threshold.delete -as [UInt32]
             ObjectProcessLimit  = $RunStep.threshold.object -as [UInt32]
