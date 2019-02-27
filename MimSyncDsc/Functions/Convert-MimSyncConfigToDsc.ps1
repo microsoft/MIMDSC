@@ -563,6 +563,41 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion ImportAttributePrecedence
 
+    #region MAData
+    $maDatas = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath "//ma-data"
+    foreach ($maData in $maDatas.Node)
+    {
+        foreach ($maPartition in $maData.'ma-partition-data'.partition)
+        {  
+                                                                                                                    $dscConfigScriptItems += @'
+        MimSyncMAPartitionData '[{0}]{1}'
+        {{
+            ManagementAgentName   = '{0}'
+            Name                  = '{1}'
+            Selected              = ${2} 
+            ObjectClassInclusions = @(
+                {3}
+            )
+            ContainerExclusions   = @(
+                {4}
+            )
+            ContainerInclusions   = @(
+                {5}
+            )
+            Ensure                = 'Present'
+        }}
+'@ -f @(
+            $maData.name
+            $maPartition.name
+            $maPartition.selected -as [Int] -as [Boolean]
+            (($maPartition.filter.'object-classes'.'object-class' | ForEach-Object {"'$PSItem'"}) -join ",`n`t")
+            (($maPartition.filter.containers.exclusions.exclusion | ForEach-Object {"'$PSItem'"}) -join ",`n`t")
+            (($maPartition.filter.containers.inclusions.inclusion | ForEach-Object {"'$PSItem'"}) -join ",`n`t")            
+            )
+        }
+    }
+    #endregion MAData
+
     $dscConfigScriptItems
 
 }
