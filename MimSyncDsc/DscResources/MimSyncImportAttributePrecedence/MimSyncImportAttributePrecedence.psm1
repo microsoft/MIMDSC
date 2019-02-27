@@ -22,22 +22,26 @@
     Write-Verbose "  Using XPath: $xPathFilter"
     $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath $xPathFilter
 
-
     $outputObject = @{
 		MVObjectType  = $MVObjectType
         MVAttribute   = $MVAttribute
         Type          = $fimSyncObject.Node.type
     }
 
+    if (-not $fimSyncObject)
+    {
+        ### No matching object so return nothing
+        return
+    }
+
     if ($fimSyncObject.Node.type -eq 'ranked')
     {
-        $RankedPrecedenceOrderFromFim = ConvertFimSyncPrecedence-ToCimInstance -ImportFlows $fimSyncObject.Node
+        $RankedPrecedenceOrderFromFim = Convert-MimSyncPrecedenceToCimInstance -ImportFlows $fimSyncObject.Node
         $outputObject.Add('RankedPrecedenceOrder', $RankedPrecedenceOrderFromFim)
     }
 
     Write-Output $outputObject
 }
-
 
 function Set-TargetResource
 {
@@ -61,7 +65,6 @@ function Set-TargetResource
 	)
     Write-Warning "DSC resources for the Synchronization Service are not able to update the Synchronization configuration."
 }
-
 
 function Test-TargetResource
 {
@@ -122,10 +125,10 @@ function Test-TargetResource
             $RankedPrecedenceOrderFromFim = Convert-MimSyncPrecedenceToCimInstance -ImportFlows $fimSyncObject.Node
 
             Write-Verbose "  Comparing ranked precedence order"
-            Write-Verbose "    From DSC: $($RankedPrecedenceOrder        | Format-Table Order,ManagementAgentName,CDObjectType -AutoSize | out-string)"
-            Write-Verbose "    From FIM: $($RankedPrecedenceOrderFromFim | Format-Table Order,ManagementAgentName,CDObjectType -AutoSize | out-string)"
+            Write-Verbose "    From DSC: $($RankedPrecedenceOrder        | Format-Table Order,ManagementAgentName,CDObjectType,ID -AutoSize | out-string)"
+            Write-Verbose "    From FIM: $($RankedPrecedenceOrderFromFim | Format-Table Order,ManagementAgentName,CDObjectType,ID -AutoSize | out-string)"
 
-            $PrecedenceCompareResults = Compare-Object -ReferenceObject $RankedPrecedenceOrder -DifferenceObject $RankedPrecedenceOrderFromFim -Property Order,ManagementAgentName,CDObjectType 
+            $PrecedenceCompareResults = Compare-Object -ReferenceObject $RankedPrecedenceOrder -DifferenceObject $RankedPrecedenceOrderFromFim -Property Order,ManagementAgentName,CDObjectType,ID 
 
             if ($PrecedenceCompareResults)
             {
@@ -139,12 +142,7 @@ function Test-TargetResource
         #endregion
     }
 
-    if ($objectsAreTheSame -eq $false)
-    {
-        $currentObject = Get-TargetResource -MVAttribute $MVAttribute -MVObjectType $MVObjectType
-        Write-MimSyncConfigCache -FimXpathFilter $xPathFilter -ObjectTestResult $objectsAreTheSame -DscBoundParameters $PSBoundParameters -CurrentObject $currentObject
-    }
-
+    Write-Verbose "Returning: $objectsAreTheSame"
     return $objectsAreTheSame
 }
 

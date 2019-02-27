@@ -1,4 +1,4 @@
-<saved-mv-configuration server='CMVM24043' export-date='2019-02-18 07:21:55.534'>
+<saved-mv-configuration server='CMVM24043' export-date='2019-02-27 18:56:33.016'>
     <!--WARNING>
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!
@@ -9,7 +9,7 @@
 </WARNING-->
     <mv-data>
         <format-version>1</format-version>
-        <version>18</version>
+        <version>20</version>
         <schema>
             <dsml:dsml xmlns:dsml="http://www.dsml.org/DSML" 
                 xmlns:ms-dsml="http://www.microsoft.com/MMS/DSML">
@@ -375,11 +375,47 @@
                     </import-flow>
                 </import-flows>
             </import-flow-set>
+            <import-flow-set mv-object-type="Contact">
+                <import-flows mv-attribute="DisplayName" type="ranked">
+                    <import-flow src-ma="{C28C379C-E494-4A08-B36D-A15B00507394}" cd-object-type="robot" id="{86E75ABE-B15D-4CFF-A785-BC968965A361}">
+                        <direct-mapping>
+                            <src-attribute>FirstName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{385176D8-4EB8-4900-B627-DBAF137C8FF3}">
+                        <scripted-mapping>
+                            <src-attribute>FirstName</src-attribute>
+                            <src-attribute>LastName</src-attribute>
+                            <script-context>cd.person:FirstName,LastName-&gt;mv.Contact:DisplayName</script-context>
+                        </scripted-mapping>
+                    </import-flow>
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{AF5CA310-1D8C-4669-95C2-1F7D0482CB8F}">
+                        <direct-mapping>
+                            <src-attribute>LastName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                    <import-flow src-ma="{9C3614F6-F975-4F32-9504-C821CBE36471}" cd-object-type="person" id="{E1261AAA-DE1A-4AF0-8373-2C6C6FB76713}">
+                        <direct-mapping>
+                            <src-attribute>FirstName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+                <import-flows mv-attribute="LastName" type="ranked">
+                    <import-flow src-ma="{C28C379C-E494-4A08-B36D-A15B00507394}" cd-object-type="robot" id="{2E6E105E-0C88-45EE-BB15-83C570E8CD3C}">
+                        <direct-mapping>
+                            <src-attribute>LastName</src-attribute>
+                        </direct-mapping>
+                    </import-flow>
+                </import-flows>
+            </import-flow-set>
             <per-ma-options>
                 <ma-options ma-id="{ECAAB0CB-AE68-47D9-8F2F-5AAE1DB0377E}">
                     <enable-recall>true</enable-recall>
                 </ma-options>
                 <ma-options ma-id="{9C3614F6-F975-4F32-9504-C821CBE36471}">
+                    <enable-recall>true</enable-recall>
+                </ma-options>
+                <ma-options ma-id="{C28C379C-E494-4A08-B36D-A15B00507394}">
                     <enable-recall>true</enable-recall>
                 </ma-options>
             </per-ma-options>

@@ -9,15 +9,15 @@
 </WARNING-->
     <ma-data>
         <format-version>1</format-version>
-        <id>{9C3614F6-F975-4F32-9504-C821CBE36471}</id>
-        <name>TinyHR</name>
+        <id>{C28C379C-E494-4A08-B36D-A15B00507394}</id>
+        <name>GrandHR</name>
         <category>Delimited</category>
         <subtype/>
         <ma-listname/>
         <ma-companyname/>
-        <creation-time>2019-02-13 06:35:57.677</creation-time>
-        <last-modification-time>2019-02-27 18:50:21.386</last-modification-time>
-        <version>10</version>
+        <creation-time>2019-02-27 18:52:57.897</creation-time>
+        <last-modification-time>2019-02-27 18:52:57.897</last-modification-time>
+        <version>1</version>
         <internal-version>0</internal-version>
         <password-sync-allowed>0</password-sync-allowed>
         <schema>
@@ -113,115 +113,14 @@
             <attribute>HireDate</attribute>
             <attribute>Status</attribute>
         </attribute-inclusion>
-        <stay-disconnector>
-            <filter-set import-filter="0" cd-object-type="contact" type="scripted" id="{835C2E75-59F4-4345-8116-B68FB7C13048}"></filter-set>
-            <filter-set import-filter="0" cd-object-type="person" type="declared">
-                <filter-alternative id="{7F6C8FEB-7007-4A05-AC55-6E0044891848}">
-                    <condition cd-attribute="FirstName" operator="equality">
-                        <value>Dave</value>
-                    </condition>
-                </filter-alternative>
-                <filter-alternative id="{530D0618-18DE-489B-BCFE-6BE24AAA5533}">
-                    <condition cd-attribute="FirstName" operator="equality">
-                        <value>Joe</value>
-                    </condition>
-                    <condition cd-attribute="Initial" operator="inequality">
-                        <value>Queue</value>
-                    </condition>
-                    <condition cd-attribute="Title" operator="present">
-                        <value></value>
-                    </condition>
-                </filter-alternative>
-            </filter-set>
-        </stay-disconnector>
-        <join>
-            <join-profile cd-object-type="contact">
-                <join-criterion id="{94012C24-7B5F-4AAA-BF49-A8A92AC0D568}">
-                    <search mv-object-type="Contact">
-                        <attribute-mapping mv-attribute="FirstName">
-                            <direct-mapping>
-                                <src-attribute>FirstName</src-attribute>
-                            </direct-mapping>
-                        </attribute-mapping>
-                        <attribute-mapping mv-attribute="LastName">
-                            <direct-mapping>
-                                <src-attribute>LastName</src-attribute>
-                            </direct-mapping>
-                        </attribute-mapping>
-                    </search>
-                    <resolution type="none">
-                        <script-context></script-context>
-                    </resolution>
-                </join-criterion>
-                <join-criterion id="{357AA84E-B9CD-487F-8EC7-E4C6DC931E43}">
-                    <search mv-object-type="Contact">
-                        <attribute-mapping mv-attribute="Alias">
-                            <scripted-mapping>
-                                <script-context>cd.contact#2:FirstName,LastName-&gt;Alias</script-context>
-                                <src-attribute>FirstName</src-attribute>
-                                <src-attribute>LastName</src-attribute>
-                            </scripted-mapping>
-                        </attribute-mapping>
-                    </search>
-                    <resolution type="scripted">
-                        <script-context>cd.contact#2</script-context>
-                    </resolution>
-                </join-criterion>
-                <join-criterion id="{B92AD32F-7F84-49A7-A385-63FB17FC3EAE}">
-                    <search>
-                        <attribute-mapping mv-attribute="Alias">
-                            <direct-mapping>
-                                <src-attribute>UserID</src-attribute>
-                            </direct-mapping>
-                        </attribute-mapping>
-                    </search>
-                    <resolution type="none">
-                        <script-context></script-context>
-                    </resolution>
-                </join-criterion>
-            </join-profile>
-        </join>
-        <projection>
-            <class-mapping type="scripted" id="{FFFA5355-F079-45BB-8BED-AD0AAC9DEE30}" cd-object-type="contact"></class-mapping>
-            <class-mapping type="declared" id="{EF14793A-F3B3-4B55-B3D4-B14613780688}" cd-object-type="person">
-                <mv-object-type>SyncObject</mv-object-type>
-            </class-mapping>
-        </projection>
-        <export-attribute-flow>
-            <export-flow-set cd-object-type="person" mv-object-type="SyncObject">
-                <export-flow cd-attribute="HireDate" id="{8F126381-AAEE-4BDE-8635-2CBA79A3B2F2}" suppress-deletions="true">
-                    <scripted-mapping>
-                        <src-attribute intrinsic="true">object-id</src-attribute>
-                        <script-context>cd.person:HireDate&lt;-mv.SyncObject:&lt;object-id&gt;</script-context>
-                    </scripted-mapping>
-                </export-flow>
-                <export-flow cd-attribute="Status" id="{8345B507-D998-44AE-A458-C02E40C249D9}">
-                    <constant-mapping>
-                        <constant-value>AlwaysThisLate</constant-value>
-                    </constant-mapping>
-                </export-flow>
-                <export-flow cd-attribute="Initial" id="{9A04846E-F36B-4EBC-A9AB-CBA40D3136DE}" suppress-deletions="false">
-                    <scripted-mapping>
-                        <src-attribute>Alias</src-attribute>
-                        <src-attribute>FirstName</src-attribute>
-                        <src-attribute>LastName</src-attribute>
-                        <script-context>cd.person:Initial&lt;-mv.SyncObject:Alias,FirstName,LastName</script-context>
-                    </scripted-mapping>
-                </export-flow>
-                <export-flow cd-attribute="JobTitle" id="{6182F688-7ADD-4E88-9BEE-A48F503CA8FE}" suppress-deletions="false">
-                    <direct-mapping>
-                        <src-attribute>Title</src-attribute>
-                    </direct-mapping>
-                </export-flow>
-            </export-flow-set>
-        </export-attribute-flow>
+        <stay-disconnector />
+        <join />
+        <projection />
+        <export-attribute-flow />
         <provisioning-cleanup type="declared">
             <action>make-normal-disconnector</action>
         </provisioning-cleanup>
-        <extension>
-            <assembly-name>TinyHRExtension.dll</assembly-name>
-            <application-protection>low</application-protection>
-        </extension>
+        <extension></extension>
         <controller-configuration>
             <application-protection>low</application-protection>
             <application-architecture>process</application-architecture>
@@ -250,7 +149,7 @@
                             <code_page_description>Western European (Windows)</code_page_description>
                         </properties>
                         <partitions>
-                            <partition cd_name="default" guid="{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}" version="10">
+                            <partition cd_name="default" guid="{90B0D4B6-7118-4B50-9713-6344ED1CE869}" version="1">
                                 <object_class>person</object_class>
                                 <object_class>contact</object_class>
                                 <object_class>robot</object_class>
@@ -449,11 +348,11 @@
         <SyncConfig-refresh-schema>0</SyncConfig-refresh-schema>
         <ma-partition-data>
             <partition>
-                <id>{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}</id>
+                <id>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</id>
                 <name>default</name>
-                <creation-time>2019-02-13 06:35:57.677</creation-time>
-                <last-modification-time>2019-02-27 18:50:21.387</last-modification-time>
-                <version>11</version>
+                <creation-time>2019-02-27 18:52:57.897</creation-time>
+                <last-modification-time>2019-02-27 18:52:57.897</last-modification-time>
+                <version>1</version>
                 <selected>1</selected>
                 <filter>
                     <object-classes>
@@ -512,18 +411,60 @@
 
         <ma-run-data>
             <run-configuration>
-                <id>{1BB4B3A9-B619-446C-816E-551F626B1C16}</id>
-                <name>FISO</name>
-                <creation-time>2019-02-13 06:35:57.707</creation-time>
+                <id>{F8345F8A-8A25-43CF-ADF6-E96E80A6E0DC}</id>
+                <name>FISO-DropAndStop</name>
+                <creation-time>2019-02-27 18:52:57.897</creation-time>
+                <version>2</version>
+                <last-modification-time>2019-02-27 18:55:28.317</last-modification-time>
+                <configuration>
+                    <step>
+                        <step-type type="full-import">
+                            <import-subtype>to-file</import-subtype>
+                        </step-type>
+                        <dropfile-name>FullDrop.xml</dropfile-name>
+                        <threshold>
+                            <batch-size>1</batch-size>
+                            <delete>10</delete>
+                        </threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
+                        <custom-data>
+                            <run-config>
+                                <input-file>GrantHR.txt</input-file>
+                            </run-config>
+                        </custom-data>
+                    </step>
+                </configuration>
+            </run-configuration>
+            <run-configuration>
+                <id>{7219CC86-B4C1-4E45-B8F4-CBA26EF15FCD}</id>
+                <name>FS</name>
+                <creation-time>2019-02-27 18:52:57.897</creation-time>
                 <version>1</version>
-                <last-modification-time>2019-02-13 06:35:57.707</last-modification-time>
+                <last-modification-time>2019-02-27 18:52:57.897</last-modification-time>
+                <configuration>
+                    <step>
+                        <step-type type="apply-rules">
+                            <apply-rules-subtype>reevaluate-flow-connectors</apply-rules-subtype>
+                        </step-type>
+                        <threshold></threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
+                        <custom-data></custom-data>
+                    </step>
+                </configuration>
+            </run-configuration>
+            <run-configuration>
+                <id>{840FB6E2-39F6-45F5-9140-B2B4819F30D6}</id>
+                <name>Full Import</name>
+                <creation-time>2019-02-27 18:52:57.897</creation-time>
+                <version>1</version>
+                <last-modification-time>2019-02-27 18:52:57.897</last-modification-time>
                 <configuration>
                     <step>
                         <step-type type="full-import">
                             <import-subtype>to-cs</import-subtype>
                         </step-type>
                         <threshold></threshold>
-                        <partition>{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}</partition>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
                         <custom-data>
                             <run-config>
                                 <input-file>tinyhr.txt</input-file>
@@ -533,38 +474,66 @@
                 </configuration>
             </run-configuration>
             <run-configuration>
-                <id>{22D57620-A872-438B-B013-44C779D3AEC2}</id>
-                <name>FS</name>
-                <creation-time>2019-02-13 06:35:57.707</creation-time>
+                <id>{69E99687-BAF3-4EC9-A632-3D1EBBED8BDB}</id>
+                <name>FIFSE</name>
+                <creation-time>2019-02-27 18:55:28.317</creation-time>
                 <version>1</version>
-                <last-modification-time>2019-02-13 06:35:57.707</last-modification-time>
-                <configuration>
-                    <step>
-                        <step-type type="apply-rules">
-                            <apply-rules-subtype>reevaluate-flow-connectors</apply-rules-subtype>
-                        </step-type>
-                        <threshold></threshold>
-                        <partition>{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}</partition>
-                        <custom-data></custom-data>
-                    </step>
-                </configuration>
-            </run-configuration>
-            <run-configuration>
-                <id>{D9A0B609-E52A-49A0-8A40-9DF1AEA09BBA}</id>
-                <name>Full Import</name>
-                <creation-time>2019-02-13 06:35:57.707</creation-time>
-                <version>1</version>
-                <last-modification-time>2019-02-13 06:35:57.707</last-modification-time>
+                <last-modification-time>2019-02-27 18:55:28.317</last-modification-time>
                 <configuration>
                     <step>
                         <step-type type="full-import">
                             <import-subtype>to-cs</import-subtype>
                         </step-type>
-                        <threshold></threshold>
-                        <partition>{08F64D3F-B82C-44E2-AC6F-9F680DECFEBE}</partition>
+                        <threshold>
+                            <batch-size>1</batch-size>
+                        </threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
                         <custom-data>
                             <run-config>
-                                <input-file>tinyhr.txt</input-file>
+                                <input-file>GrandHR.txt</input-file>
+                            </run-config>
+                        </custom-data>
+                    </step>
+                    <step>
+                        <step-type type="apply-rules">
+                            <apply-rules-subtype>reevaluate-flow-connectors</apply-rules-subtype>
+                        </step-type>
+                        <threshold>
+                            <batch-size>1</batch-size>
+                        </threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
+                        <custom-data></custom-data>
+                    </step>
+                    <step>
+                        <step-type type="export"></step-type>
+                        <threshold>
+                            <batch-size>1</batch-size>
+                        </threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
+                        <custom-data>
+                            <run-config>
+                                <output-file>GrandExports.txt</output-file>
+                            </run-config>
+                        </custom-data>
+                    </step>
+                </configuration>
+            </run-configuration>
+            <run-configuration>
+                <id>{09B48C04-0B5B-4FB1-88AF-2BF07EBE9429}</id>
+                <name>FIFS-OneStep</name>
+                <creation-time>2019-02-27 18:55:28.317</creation-time>
+                <version>1</version>
+                <last-modification-time>2019-02-27 18:55:28.317</last-modification-time>
+                <configuration>
+                    <step>
+                        <step-type type="full-import-reevaluate-rules"></step-type>
+                        <threshold>
+                            <batch-size>1</batch-size>
+                        </threshold>
+                        <partition>{90B0D4B6-7118-4B50-9713-6344ED1CE869}</partition>
+                        <custom-data>
+                            <run-config>
+                                <input-file>GrandHR.txt</input-file>
                             </run-config>
                         </custom-data>
                     </step>
