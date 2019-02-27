@@ -511,7 +511,58 @@ function Convert-MimSyncConfigToDsc {
         )           
     }
 
-    #endRegion RunProfile
+    #endregion RunProfile
+
+    #region ImportAttributePrecedence
+    $iafRules = Get-MimSyncImportAttributeFlow -ServerConfigurationFolder $Path | Sort-Object MVObjectType, MVAttribute, PrecedenceRank
+    $iafRules | Group-Object MVObjectType, MVAttribute | Where-Object Count -GT 1 | ForEach-Object {
+        $mvObjectType = $PSItem.Group[0].MVObjectType
+        $mvAttributeType = $PSItem.Group[0].MVAttribute
+        $Type = $PSItem.Group[0].PrecedenceType
+
+        if ($Type -eq 'ranked')
+        {
+            $rankedStrings = @()
+            foreach($rankedItem in $PSItem.Group)
+            {
+                $rankedStrings += "RankedPrecedenceOrder{{Order = {0}; ManagementAgentName='{1}'; CDObjectType='{2}';  ID='{3}'}}" -f ($rankedItem.PrecedenceRank -1), $rankedItem.MAName, $rankedItem.CDObjectType, $rankedItem.ID
+            }
+
+            $dscConfigScriptItems += @'
+            ImportAttributePrecedence '{0}-{1}'
+            {{
+                MVObjectType          = '{0}'
+                MVAttribute           = '{1}'
+                Type                  = '{2}'
+                RankedPrecedenceOrder = @(
+                    {3}
+                )
+            }}
+'@ -f @(
+            $mvObjectType
+            $mvAttributeType
+            $Type
+            $rankedStrings -join "`n`t"
+            )
+        }
+        else
+        {
+            $dscConfigScriptItems += @'
+            ImportAttributePrecedence '{0}-{1}'
+            {{
+                MVObjectType = '{0}'
+                MVAttribute  = '{1}'
+                Type         = '{2}'
+            }}
+'@ -f @(
+            $mvObjectType
+            $mvAttributeType
+            $Type
+            )
+        }
+    }
+    #endregion ImportAttributePrecedence
+
     $dscConfigScriptItems
 
 }
