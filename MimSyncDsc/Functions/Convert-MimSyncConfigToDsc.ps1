@@ -459,6 +459,59 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion MVAttributeType
 
+    #region RunProfile
+    $runProfiles = Get-MimSyncRunProfile
+
+    foreach ($runProfile in $runProfiles) {    
+        $runStepStrings = @()
+        foreach($runStep in $runProfile.RunSteps)
+        {
+            $runStepStrings += @'
+        RunStep{{
+            StepType            = '{0}'
+            StepSubType         = @({1})
+            PartitionIdentifier = '{2}'
+            InputFile           = '{3}'
+            PageSize            = {4}
+            Timeout             = {5}
+            ObjectDeleteLimit   = {6}
+            ObjectProcessLimit  = {7}
+            LogFilePath         = '{8}' 
+            DropFileName        = '{9}'
+            FakeIdentifier      = '{10}'
+        }}
+'@ -f @(
+            $runStep.StepType
+            ($runStep.StepSubType | ForEach-Object { "'$PSItem'"}) -join ','
+            $runStep.PartitionIdentifier
+            $runStep.InputFile
+            $runStep.PageSize
+            $runStep.Timeout
+            $runStep.ObjectDeleteLimit
+            $runStep.ObjectProcessLimit
+            $runStep.LogFilePath
+            $runStep.DropFileName
+            [Guid]::NewGuid().Guid
+        )              
+        } 
+        $dscConfigScriptItems += @'
+    RunProfile '{1}'
+    {{   
+        ManagementAgentName    = '{0}'        
+        Name                   = '{1}'
+        RunSteps               = @(
+        {2}       
+        )
+        Ensure                 = 'Present'
+    }}
+'@ -f @(
+            $runProfile.ManagementAgentName
+            $runProfile.Name
+            $runStepStrings -join "`n"            
+        )           
+    }
+
+    #endRegion RunProfile
     $dscConfigScriptItems
 
 }

@@ -73,6 +73,7 @@ FunctionsToExport = @(
     'Get-MimSyncProjectionRule'
     'Get-MimRegistryKey'
     'Get-MimSyncConfigCache'
+    'Get-MimSyncRunProfile'
     'Get-MimSyncPath'
     'Get-MimSyncImportAttributeFlow'
     'Get-MimSyncManagementAgentXml'

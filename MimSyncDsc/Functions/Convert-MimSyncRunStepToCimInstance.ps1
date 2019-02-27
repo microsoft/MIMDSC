@@ -53,7 +53,7 @@ function Convert-MimSyncRunStepToCimInstance
         $StepSubtypes = @()
         $RunStep.'step-type'.ChildNodes | Where-Object NodeType -ne Whitespace | ForEach-Object {$StepSubtypes += $_.InnerText}
 
-        $cimInstance = New-CimInstance -ClassName cFimSyncRunStep -ClientOnly -Namespace root/microsoft/windows/desiredstateconfiguration -Property @{
+        $cimInstance = New-CimInstance -ClassName MimSyncRunStep -ClientOnly -Namespace root/microsoft/windows/desiredstateconfiguration -Property @{
             StepType            = $RunStep.'step-type'.type -as [String]
             PartitionIdentifier = $RunStep.partition -as [String]
             StepSubtype         = '' -as [String[]]
