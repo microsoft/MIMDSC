@@ -33,6 +33,12 @@ function Get-TargetResource
     Write-Verbose "  Using XPath: $xPathFilter"
     $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml) -XPath $xPathFilter
 
+    if (-not $fimSyncObject)
+    {
+        ### No matching object so return nothing
+        return
+    }
+    
 	$returnValue = @{
 		ManagementAgentName = $ManagementAgentName
 		Name = $Name
