@@ -598,6 +598,10 @@ function Convert-MimSyncConfigToDsc {
     }
     #endregion MAData
 
+    #region MAPrivateConfiguration
+    Write-Warning 'Skipping MAPrivateConfiguration...'
+    #endregion MAPrivateConfiguration
+
     $dscConfigScriptItems
 
 }
