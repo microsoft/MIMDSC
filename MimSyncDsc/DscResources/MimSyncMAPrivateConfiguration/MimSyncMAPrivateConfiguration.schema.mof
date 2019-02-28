@@ -1,0 +1,21 @@
+﻿[ClassVersion("1.0.0.0"), FriendlyName("MimSyncMAPrivateConfiguration")]
+class MimSyncMAPrivateConfiguration : OMI_BaseResource
+{
+	[Key] String ManagementAgentName;
+	[Write] String ForestName;
+	[Write] String ForestLoginDomain;
+	[Write] String ForestLoginUser;
+	[Write] Boolean SignAndSeal;
+	[Write] Boolean SslBind;
+	[Write] Boolean SslBindCrlCheck;
+	[Write] Boolean SimpleBind;
+	[Write] String Authentication;
+	[Write] String User;
+	[Write] String Domain;
+	[Write] String Server;
+	[Write] String DatabaseName;
+	[Write] String TableName;
+	[Write] String DeltaTableName;
+	[Write, EmbeddedInstance("MSFT_Credential")] String Credential;
+	[Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
