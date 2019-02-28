@@ -1,4 +1,9 @@
 [![Build Status](https://dev.azure.com/cmart5000/MIMDSC/_apis/build/status/Microsoft.MIMDSC?branchName=master)](https://dev.azure.com/cmart5000/MIMDSC/_build/latest?definitionId=1&branchName=master)
+# Status
+The DSC module for MIM Sync is nearly complete.  Next steps:
+* Improve the DSC script generator for MIM Sync (turns a MIM Sync configuration into a DSC configuration)
+* Publish MIM Sync DSC module to the PowerShell Gallery
+* Start work on the MIM Service DSC module
 
 # DSC Module for MIM
 MIMDSC is a PowerShell Desired State Configuration (DSC) module for Microsoft Identity Manager (MIM).
