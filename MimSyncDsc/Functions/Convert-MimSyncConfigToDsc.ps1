@@ -495,7 +495,7 @@ function Convert-MimSyncConfigToDsc {
         )              
         } 
         $dscConfigScriptItems += @'
-    RunProfile '{1}'
+    RunProfile '[{0}]{1}'
     {{   
         ManagementAgentName    = '{0}'        
         Name                   = '{1}'
