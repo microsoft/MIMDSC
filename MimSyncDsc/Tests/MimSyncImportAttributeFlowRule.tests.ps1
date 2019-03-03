@@ -237,4 +237,37 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
 
         $dscStatus.Status | Should Be 'Success'
     }
+
+    It 'Issue: IAF Rules with identical key properties' {
+        Configuration TestMimSyncConfig 
+        { 
+            Import-DscResource -ModuleName MimSyncDsc
+
+            Node (hostname) 
+            { 
+               ImportAttributeFlowRule af5ca310-1d8c-4669-95c2-1f7d0482cb8f
+                {   
+                    ManagementAgentName    = 'TinyHR'
+                    MVObjectType           = 'Contact'
+                    MVAttribute            = 'DisplayName'
+                    CDObjectType           = 'person'
+                    Type                   = 'direct-mapping'
+                    SrcAttribute           = 'LastName'
+                    Ensure                 = 'Present'
+                }
+    
+                ImportAttributeFlowRule e1261aaa-de1a-4af0-8373-2c6c6fb76713
+                {   
+                    ManagementAgentName    = 'TinyHR'
+                    MVObjectType           = 'Contact'
+                    MVAttribute            = 'DisplayName'
+                    CDObjectType           = 'person'
+                    Type                   = 'direct-mapping'
+                    SrcAttribute           = 'FirstName'
+                    Ensure                 = 'Present'
+                }
+            }
+        } 
+        {TestMimSyncConfig -OutputPath "$env:TEMP\TestMimSyncConfig" } | Should Not Throw       
+    }
 }
