@@ -44,32 +44,7 @@
     ### Check the schema cache and update if necessary
     Write-MimSyncConfigCache -Verbose
 
-    ### Find an MA XML by Name
-    $maDataXml = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml)-XPath "//ma-data[name='$ManagementAgentName']" | Select-Object -First 1
-    $managementAgentID = $maDataXml.Node.id
-
-    ### Get the XML from the server configuration files
-    Write-Verbose "Finding import attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."
-    $xPathFilter = "//mv-data/import-attribute-flow/import-flow-set[@mv-object-type='$MVObjectType']/import-flows[@mv-attribute='$MVAttribute']/import-flow[@src-ma='$managementAgentID' and @cd-object-type='$CDObjectType' and $Type"
-    switch ($Type) {
-        'scripted-mapping' 
-        {
-            $xPathFilter +=  " and scripted-mapping[script-context='$ScriptContext']]"
-        }
-        'direct-mapping'
-        {
-            $xPathFilter +=  " and direct-mapping[src-attribute='$SrcAttribute']]"
-        }
-        'constant-mapping'
-        {
-            $xPathFilter +=  " and constant-mapping[constant-value='$ConstantValue']]"
-        }
-        'dn-part-mapping'
-        {
-            $xPathFilter +=  " and dn-part-mapping[dn-part='$DNPart']]"
-        }
-        Default {}
-    }
+    $xPathFilter = Get-MimSyncXpathForIafRule @PSBoundParameters
 
     Write-Verbose "  Using XPath: $xPathFilter"
     $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath $xPathFilter
@@ -227,13 +202,9 @@ function Test-TargetResource
     ### Check the schema cache and update if necessary
     Write-MimSyncConfigCache -Verbose
 
-    ### Find an MA XML by Name
-    $maDataXml = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml)-XPath "//ma-data[name='$ManagementAgentName']" | Select-Object -First 1
-    $managementAgentID = $maDataXml.Node.id
-
     ### Get the XML from the server configuration files
     Write-Verbose "Finding import attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."    
-    $xPathFilter = "//mv-data/import-attribute-flow/import-flow-set[@mv-object-type='$MVObjectType']/import-flows[@mv-attribute='$MVAttribute']/import-flow[@src-ma='$managementAgentID' and @cd-object-type='$CDObjectType' and $Type]"
+    $xPathFilter = Get-MimSyncXpathForIafRule @PSBoundParameters
     Write-Verbose "  Using XPath: $xPathFilter"
     $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath $xPathFilter
 
@@ -380,6 +351,73 @@ function Test-TargetResource
 
     Write-Verbose "Returning: $objectsAreTheSame"
     return $objectsAreTheSame
+}
+
+function Get-MimSyncXpathForIafRule 
+{
+    param (
+        $FakeIdentifier,
+        $Ensure,
+        [parameter(Mandatory = $true)]
+		[System.String]
+        $ManagementAgentName,
+        
+        [parameter(Mandatory = $true)]
+		[System.String]
+		$MVObjectType,
+
+		[parameter(Mandatory = $true)]
+		[System.String]
+		$MVAttribute,
+
+		[parameter(Mandatory = $true)]
+		[System.String]
+		$CDObjectType,
+
+        [parameter(Mandatory = $true)]
+        [ValidateSet("direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping")]
+		[String]
+		$Type,
+
+        [String[]]
+        $SrcAttribute,
+
+        [String]
+        $ConstantValue,
+
+        [Uint16]
+        $DNPart,
+
+        [String]
+        $ScriptContext
+    )
+        ### Find an MA XML by Name
+        $maDataXml = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) *.xml)-XPath "//ma-data[name='$ManagementAgentName']" | Select-Object -First 1
+        $managementAgentID = $maDataXml.Node.id
+
+        ### Get the XML from the server configuration files
+        Write-Verbose "Finding import attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."
+        $xPathFilter = "//mv-data/import-attribute-flow/import-flow-set[@mv-object-type='$MVObjectType']/import-flows[@mv-attribute='$MVAttribute']/import-flow[@src-ma='$managementAgentID' and @cd-object-type='$CDObjectType' and $Type"
+        switch ($Type) {
+            'scripted-mapping' 
+            {
+                $xPathFilter +=  " and scripted-mapping[script-context='$ScriptContext']]"
+            }
+            'direct-mapping'
+            {
+                $xPathFilter +=  " and direct-mapping[src-attribute='$SrcAttribute']]"
+            }
+            'constant-mapping'
+            {
+                $xPathFilter +=  " and constant-mapping[constant-value='$ConstantValue']]"
+            }
+            'dn-part-mapping'
+            {
+                $xPathFilter +=  " and dn-part-mapping[dn-part='$DNPart']]"
+            }
+            Default {}
+        }
+        return $xPathFilter
 }
 
 Export-ModuleMember -Function *-TargetResource

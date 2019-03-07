@@ -119,6 +119,7 @@ function Convert-MimSyncConfigToDsc {
                 $dscConfigScriptItems += @'
     ImportAttributeFlowRule {0}
     {{   
+        FakeIdentifier         = '{0}'
         ManagementAgentName    = '{1}'
         MVObjectType           = '{2}'
         MVAttribute            = '{3}'
@@ -143,6 +144,7 @@ function Convert-MimSyncConfigToDsc {
                 $dscConfigScriptItems += @'
     ImportAttributeFlowRule {0}
     {{
+        FakeIdentifier         = '{0}'
         ManagementAgentName    = '{1}'
         MVObjectType           = '{2}'
         MVAttribute            = '{3}'
@@ -167,6 +169,7 @@ function Convert-MimSyncConfigToDsc {
                 $dscConfigScriptItems += @'
     ImportAttributeFlowRule {0}
     {{
+        FakeIdentifier         = '{0}'
         ManagementAgentName    = '{1}'
         MVObjectType           = '{2}'
         MVAttribute            = '{3}'
@@ -189,6 +192,7 @@ function Convert-MimSyncConfigToDsc {
                 $dscConfigScriptItems += @'
     ImportAttributeFlowRule {0}
     {{
+        FakeIdentifier         = '{0}'
         ManagementAgentName    = '{1}'
         MVObjectType           = '{2}'
         MVAttribute            = '{3}'

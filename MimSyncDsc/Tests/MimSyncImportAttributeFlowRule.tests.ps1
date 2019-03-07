@@ -6,70 +6,70 @@ Import-Module -Name $dscResource.Path -Force
 Describe -Tag 'Build' 'MimSyncImportAttributeFlowRule - calling Test-TargetResource Directly'{
     It 'Direct IAF Rule - desired state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute FirstName -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute FirstName -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be True
     }
 
     It 'Direct IAF Rule - rogue state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute SamAccountName -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute SamAccountName -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be False
     }
 
     It 'Direct IAF Rule - missing IAF rule' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute Initial -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName -CDObjectType person -Type 'direct-mapping' -MVAttribute Initial -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be False
     }
 
     It 'Direct-Mapping IAF Rule - dn-mapping desired state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute dn -CDObjectType person -Type 'direct-mapping' -MVAttribute Fax -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute dn -CDObjectType person -Type 'direct-mapping' -MVAttribute Fax -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be True
     }
 
     It 'Scripted IAF Rule - desired state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,Initial,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute DisplayName -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,Initial,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute DisplayName -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be True
     }
 
     It 'Scripted IAF Rule - missing one source attribute' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute DisplayName -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute DisplayName -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be False
     }
 
     It 'Scripted IAF Rule - missing IAF rule' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute Oid -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -SrcAttribute FirstName,LastName,Title -CDObjectType person -Type 'scripted-mapping' -MVAttribute Oid -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be False
     }    
 
     It 'Constant IAF Rule - desired state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute OnPremiseObjectType -CDObjectType person -Type 'constant-mapping' -ConstantValue 'superPerson' -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute OnPremiseObjectType -CDObjectType person -Type 'constant-mapping' -ConstantValue 'superPerson' -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be True
     }
     
     It 'DN Mapping IAF Rule - desired state' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute RetentionUrl -CDObjectType person -Type 'dn-part-mapping' -DNPart 3 -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute RetentionUrl -CDObjectType person -Type 'dn-part-mapping' -DNPart 3 -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be True
     }
 
     It 'DN Mapping IAF Rule - incorrect DN part' {
 
-        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute RetentionUrl -CDObjectType person -Type 'dn-part-mapping' -DNPart 2 -Ensure Present -Verbose
+        $dscResult = Test-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute RetentionUrl -CDObjectType person -Type 'dn-part-mapping' -DNPart 2 -FakeIdentifier foo -Ensure Present -Verbose
 
         $dscResult | Should be False
     }
@@ -120,6 +120,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             { 
                 ImportAttributeFlowRule TestMimSyncImportAttributeFlowRule
                 {
+                   FakeIdentifier         = 'foo'
                    ManagementAgentName    = 'TinyHR'
                    MVObjectType           = 'SyncObject'
                    MVAttribute            = 'FirstName'
@@ -148,6 +149,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             { 
                 ImportAttributeFlowRule TestMimSyncImportAttributeFlowRule
                 {
+                   FakeIdentifier         = 'foo'
                    ManagementAgentName    = 'TinyHR'
                    MVObjectType           = 'SyncObject'
                    MVAttribute            = 'Fax'
@@ -176,6 +178,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             { 
                 ImportAttributeFlowRule TestMimSyncImportAttributeFlowRule
                 {
+                   FakeIdentifier         = 'foo'
                    ManagementAgentName    = 'TinyHR'
                    MVObjectType           = 'SyncObject'
                    MVAttribute            = 'RetentionUrl'
@@ -204,6 +207,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             { 
                 ImportAttributeFlowRule TestMimSyncImportAttributeFlowRule
                 {
+                   FakeIdentifier         = 'foo'
                    ManagementAgentName    = 'TinyHR'
                    MVObjectType           = 'SyncObject'
                    MVAttribute            = 'DisplayName'
@@ -233,6 +237,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             { 
                 ImportAttributeFlowRule TestMimSyncImportAttributeFlowRule
                 {
+                   FakeIdentifier         = 'foo'
                    ManagementAgentName    = 'TinyHR'
                    MVObjectType           = 'SyncObject'
                    MVAttribute            = 'OnPremiseObjectType'
@@ -260,7 +265,8 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
             Node (hostname) 
             { 
                ImportAttributeFlowRule af5ca310-1d8c-4669-95c2-1f7d0482cb8f
-                {   
+                {  
+                    FakeIdentifier         = 'foo' 
                     ManagementAgentName    = 'TinyHR'
                     MVObjectType           = 'Contact'
                     MVAttribute            = 'DisplayName'
@@ -272,6 +278,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     
                 ImportAttributeFlowRule e1261aaa-de1a-4af0-8373-2c6c6fb76713
                 {   
+                    FakeIdentifier         = 'bar'
                     ManagementAgentName    = 'TinyHR'
                     MVObjectType           = 'Contact'
                     MVAttribute            = 'DisplayName'
