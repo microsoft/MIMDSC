@@ -4,6 +4,10 @@
 	[OutputType([System.Collections.Hashtable])]
 	param
 	(
+        [parameter(Mandatory = $true)]
+		[System.String]
+        $FakeIdentifier,
+        
 		[parameter(Mandatory = $true)]
 		[System.String]
 		$ManagementAgentName,
@@ -23,7 +27,19 @@
         [parameter(Mandatory = $true)]
         [ValidateSet("direct-mapping","scripted-mapping","constant-mapping","dn-part-mapping")]
 		[String]
-		$Type
+        $Type,
+        
+        [String[]]
+        $SrcAttribute,
+
+        [String]
+        $ConstantValue,
+
+        [Uint16]
+        $DNPart,
+
+        [String]
+        $ScriptContext
 	)
     ### Check the schema cache and update if necessary
     Write-MimSyncConfigCache -Verbose
@@ -33,14 +49,41 @@
     $managementAgentID = $maDataXml.Node.id
 
     ### Get the XML from the server configuration files
-    Write-Verbose "Finding import attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."    
-    $xPathFilter = "//mv-data/import-attribute-flow/import-flow-set[@mv-object-type='$MVObjectType']/import-flows[@mv-attribute='$MVAttribute']/import-flow[@src-ma='$managementAgentID' and @cd-object-type='$CDObjectType' and $Type]"
+    Write-Verbose "Finding import attribute flow rule [$ManagementAgentName].$CDObjectType.[$($SrcAttribute -Join ',')] --> MV.$MVObjectType.[$MVAttribute] ..."
+    $xPathFilter = "//mv-data/import-attribute-flow/import-flow-set[@mv-object-type='$MVObjectType']/import-flows[@mv-attribute='$MVAttribute']/import-flow[@src-ma='$managementAgentID' and @cd-object-type='$CDObjectType' and $Type"
+    switch ($Type) {
+        'scripted-mapping' 
+        {
+            $xPathFilter +=  " and scripted-mapping[script-context='$ScriptContext']]"
+        }
+        'direct-mapping'
+        {
+            $xPathFilter +=  " and direct-mapping[src-attribute='$SrcAttribute']]"
+        }
+        'constant-mapping'
+        {
+            $xPathFilter +=  " and constant-mapping[constant-value='$ConstantValue']]"
+        }
+        'dn-part-mapping'
+        {
+            $xPathFilter +=  " and dn-part-mapping[dn-part='$DNPart']]"
+        }
+        Default {}
+    }
+
     Write-Verbose "  Using XPath: $xPathFilter"
     $fimSyncObject = Select-Xml -Path (Join-Path (Get-MimSyncConfigCache) mv.xml) -XPath $xPathFilter
 
     if (-not $fimSyncObject)
     {
         ### No matching object so return nothing
+        return
+    }
+
+    if ($fimSyncObject -is [Array])
+    {
+        ### Mre than one matching object so return nothing
+        Write-Warning "More than one object found - expected just one!"
         return
     }
 
@@ -59,22 +102,25 @@
         ID                   = $fimSyncObject.Node.ID
     }
 
-    if ($Type -eq 'scripted-mapping')
-    {
-        $outputObject.Add('ScriptContext',$fimSyncObject.Node.'scripted-mapping'.'script-context')
-        $outputObject.Add('SrcAttribute', $fimSrcAttributes)
-    }
-    if ($Type -eq 'direct-mapping')
-    {
-        $outputObject.Add('SrcAttribute', $fimSrcAttributes)
-    }
-    if ($Type -eq 'constant-mapping')
-    {
-        $outputObject.Add('ConstantValue', $fimSyncObject.Node.'constant-mapping'.'constant-value')
-    }
-    if ($Type -eq 'dn-part-mapping')
-    {
-        $outputObject.Add('DNPart', $fimSyncObject.Node.'dn-part-mapping'.'dn-part')
+    switch ($Type) {
+        'scripted-mapping' 
+        {
+            $outputObject.Add('ScriptContext',$fimSyncObject.Node.'scripted-mapping'.'script-context')
+            $outputObject.Add('SrcAttribute', $fimSrcAttributes)
+        }
+        'direct-mapping'
+        {
+            $outputObject.Add('SrcAttribute', $fimSrcAttributes)
+        }
+        'constant-mapping'
+        {
+            $outputObject.Add('ConstantValue', $fimSyncObject.Node.'constant-mapping'.'constant-value')
+        }
+        'dn-part-mapping'
+        {
+            $outputObject.Add('DNPart', $fimSyncObject.Node.'dn-part-mapping'.'dn-part')
+        }
+        Default {}
     }
 
     Write-Output $outputObject
@@ -86,6 +132,10 @@ function Set-TargetResource
 	[CmdletBinding()]
 	param
 	(
+        [parameter(Mandatory = $true)]
+		[System.String]
+        $FakeIdentifier,
+        
 		[parameter(Mandatory = $true)]
 		[System.String]
 		$ManagementAgentName,
@@ -133,6 +183,10 @@ function Test-TargetResource
 	[OutputType([System.Boolean])]
 	param
 	(
+        [parameter(Mandatory = $true)]
+		[System.String]
+        $FakeIdentifier,
+        
 		[parameter(Mandatory = $true)]
 		[System.String]
 		$ManagementAgentName,

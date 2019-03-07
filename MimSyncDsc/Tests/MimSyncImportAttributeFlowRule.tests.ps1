@@ -78,20 +78,34 @@ Describe -Tag 'Build' 'MimSyncImportAttributeFlowRule - calling Test-TargetResou
 Describe -Tag 'Build' 'MimSyncImportAttributeFlowRule - calling Get-TargetResource Directly'{
     It 'Direct IAF Rule - desired state' {
 
-        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute SamAccountName -CDObjectType person -Type 'direct-mapping' -Verbose
+        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute SamAccountName -CDObjectType person -Type 'direct-mapping' -SrcAttribute UserID -FakeIdentifier foo -Verbose
 
         $dscResult['SrcAttribute'] | Should be 'UserID'        
     }
 
     It 'Scripted IAF Rule - desired state' {
 
-        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute DisplayName -CDObjectType person -Type 'scripted-mapping' -Verbose
+        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute DisplayName -CDObjectType person -Type 'scripted-mapping' -ScriptContext 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName' -FakeIdentifier foo -Verbose
 
         $dscResult['ScriptContext'] | Should be 'cd.person:FirstName,LastName->mv.SyncObject:DisplayName'        
     }
 
+    It 'DN-Part IAF Rule - desired state' {
+
+        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute RetentionUrl -CDObjectType person -Type 'dn-part-mapping' -DNPart 3 -FakeIdentifier foo -Verbose
+
+        $dscResult['DNPart'] | Should be 3        
+    }
+
+    It 'Constant IAF Rule - desired state' {
+
+        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObject -MVAttribute OnPremiseObjectType -CDObjectType person -Type 'constant-mapping' -ConstantValue 'superPerson' -FakeIdentifier foo -Verbose
+
+        $dscResult['ConstantValue'] | Should be 'superPerson'        
+    }
+
     It 'Direct EAF Rule - undesirable state' {
-        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObjects -MVAttribute SamAccountName -CDObjectType person -Type 'direct-mapping' -Verbose
+        $dscResult = Get-TargetResource -ManagementAgentName TinyHR -MVObjectType SyncObjects -MVAttribute SamAccountName -CDObjectType person -Type 'direct-mapping' -FakeIdentifier foo -Verbose
         (-not $dscResult) | Should Be True
     }
 }
