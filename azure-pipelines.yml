@@ -11,7 +11,7 @@ pool:
 
 steps:
 - powershell: |
-   .\MimDsc\build.ps1
+   .\build.ps1
   displayName: 'Build and Test'
   failOnStderr: true
   ignoreLASTEXITCODE: true
