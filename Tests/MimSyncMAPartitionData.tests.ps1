@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMAPartitionData
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMAPartitionData
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -80,7 +80,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMAPartitionData - using 
     It 'MimSyncMAPartitionData - desired state' {
         Configuration TestMimSyncMAPartitionDataConfig 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

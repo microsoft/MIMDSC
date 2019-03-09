@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMVOptions
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMVOptions
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -38,7 +38,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncProjectionRule - using t
     It 'MVOptions - desired state' {
         Configuration TestMimSyncMVOptions 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -61,7 +61,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncProjectionRule - using t
     It 'MVOptions - incorrect state' {
         Configuration TestMimSyncMVOptions 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

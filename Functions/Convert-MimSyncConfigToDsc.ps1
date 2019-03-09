@@ -13,8 +13,8 @@ function Convert-MimSyncConfigToDsc {
     [CmdletBinding()]
     Param
     (
-        # Folder with the Sync Service configuration XML files (defaults to $env:ProgramData\MimSyncDsc\Svrexport)
-        $Path = "$env:ProgramData\MimSyncDsc\Svrexport"
+        # Folder with the Sync Service configuration XML files (defaults to $env:ProgramData\MimDsc\Svrexport)
+        $Path = "$env:ProgramData\MimDsc\Svrexport"
     )
     Write-Verbose "Using Path: $Path"
 
@@ -220,7 +220,7 @@ function Convert-MimSyncConfigToDsc {
     #endregion IAF rules
 
     #region Join rules
-    $joinRules = Get-MimSyncJoinRule -ServerConfigurationFolder "$env:ProgramData\MimSyncDsc\Svrexport\"
+    $joinRules = Get-MimSyncJoinRule -ServerConfigurationFolder "$env:ProgramData\MimDsc\Svrexport\"
 
     foreach ($joinRule in $joinRules) {    
         $joinCriteriaStrings = @()
@@ -285,7 +285,7 @@ function Convert-MimSyncConfigToDsc {
     #endregion Join rules
 
     #region Projection rules
-    $projectionRules = Get-MimSyncProjectionRule -ServerConfigurationFolder "$env:ProgramData\MimSyncDsc\Svrexport\" 
+    $projectionRules = Get-MimSyncProjectionRule -ServerConfigurationFolder "$env:ProgramData\MimDsc\Svrexport\" 
     foreach ($projectionRule in $projectionRules) {
         $dscConfigScriptItems += @'
     ProjectionRule {1}

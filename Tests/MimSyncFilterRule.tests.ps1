@@ -1,5 +1,5 @@
 ﻿
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncFilterRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncFilterRule
 
 ipmo $dscResource.Path -Force
 
@@ -107,7 +107,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncFilterRule - using the L
     It 'Scripted Filter Rule - desired state' {
         Configuration TestMimSyncFilterRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -133,7 +133,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncFilterRule - using the L
     It 'Scripted Filter Rule - desired state' {
         Configuration TestMimSyncFilterRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -159,7 +159,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncFilterRule - using the L
     It 'Declared Filter Rule - desired state' {
         Configuration TestMimSyncFilterRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

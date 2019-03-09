@@ -7,8 +7,8 @@ function Get-MimSyncConfigCache
    Get-FimSyncConfigCache
 #>
 
-    # Cache Folder (defaults to $env:ProgramData\MimSyncDsc\BoundAttributesCache)
-    $CacheLocation = "$env:ProgramData\MimSyncDsc\Svrexport"
+    # Cache Folder (defaults to $env:ProgramData\MimDsc\BoundAttributesCache)
+    $CacheLocation = "$env:ProgramData\MimDsc\Svrexport"
 
     Write-Verbose "Using CacheLocation: $CacheLocation"
 

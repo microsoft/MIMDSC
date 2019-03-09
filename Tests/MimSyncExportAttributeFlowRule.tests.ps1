@@ -1,7 +1,7 @@
 
 #Get-MimSyncServerXml -Path (Get-MimSyncConfigCache) -Force
 
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncExportAttributeFlowRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncExportAttributeFlowRule
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -89,7 +89,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncExportAttributeFlowRule 
     It 'Direct EAF Rule - desired state' {
         Configuration TestMimSyncExportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -118,7 +118,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncExportAttributeFlowRule 
     It 'Scripted EAF Rule - desired state' {
         Configuration TestMimSyncExportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -148,7 +148,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncExportAttributeFlowRule 
     It 'Scripted EAF Rule - multiple source attributes - desired state' {
         Configuration TestMimSyncExportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -178,7 +178,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncExportAttributeFlowRule 
     It 'Constant EAF Rule - desired state' {
         Configuration TestMimSyncExportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

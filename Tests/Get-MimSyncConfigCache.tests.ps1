@@ -1,10 +1,10 @@
-﻿Import-Module -Name MimSyncDsc
+﻿Import-Module -Name MimDsc
 
 Describe Get-MimSyncConfigCache{
     <#
     It 'Does Throw When Cache is Missing' {
         #Arrange
-        Remove-Item -Path "$env:ProgramData\MimSyncDsc\Svrexport" -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:ProgramData\MimDsc\Svrexport" -ErrorAction SilentlyContinue
 
         (Get-MimSyncConfigCache -eq $null) | Should Be True 
     }
@@ -12,10 +12,10 @@ Describe Get-MimSyncConfigCache{
 
     It 'Does Not Throw When Cache folder is present' {
         # Arrange
-        mkdir "$env:ProgramData\MimSyncDsc\Svrexport" 
+        mkdir "$env:ProgramData\MimDsc\Svrexport" 
         
         # Act
-        $actualValue = Get-ChildItem "$env:ProgramData\MimSyncDsc\Svrexport"
+        $actualValue = Get-ChildItem "$env:ProgramData\MimDsc\Svrexport"
 
         # Assert
         {Get-MimSyncConfigCache } | Should Not Throw 

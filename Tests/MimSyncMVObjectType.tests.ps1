@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMVObjectType
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMVObjectType
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -232,7 +232,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVObjectType - using the
     It 'MimSyncMVObjectType - desired state' {
         Configuration TestMimSyncMVObjectType 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -311,7 +311,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVObjectType - using the
     It 'MimSyncMVObjectType - missing attributes' {
         Configuration TestMimSyncMaData 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

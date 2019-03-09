@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMaData
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMaData
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -104,7 +104,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMaData - using the Local
     It 'MaData - desired state' {
         Configuration TestMimSyncMaData 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -154,7 +154,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMaData - using the Local
     It 'MaData - incorrect Attribute Inclusion' {
         Configuration TestMimSyncMaData 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -204,7 +204,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMaData - using the Local
     It 'MaData - incorrect Assembly Name' {
         Configuration TestMimSyncMaData 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

@@ -2,7 +2,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'MimSyncDsc.psm1'
+RootModule = 'MimDsc.psm1'
 
 # Version number of this module.
 ModuleVersion = '0.0.1'
@@ -23,7 +23,7 @@ CompanyName = 'Microsoft Corporation'
 Copyright = '(c) Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Desired State Configuration resources for Microsoft Identity Manager Synchronization Service'
+Description = 'Desired State Configuration resources for Microsoft Identity Manager'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'

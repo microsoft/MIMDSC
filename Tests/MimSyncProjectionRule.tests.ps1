@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncProjectionRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncProjectionRule
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -52,7 +52,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncProjectionRule - using t
     It 'Projection Rule - desired state' {
         Configuration TestMimSyncProjectionRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -75,7 +75,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncProjectionRule - using t
     It 'Projection Rule - incorrect type' {
         Configuration TestMimSyncProjectionRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

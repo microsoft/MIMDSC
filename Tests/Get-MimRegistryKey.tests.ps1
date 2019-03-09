@@ -1,4 +1,4 @@
-﻿Import-Module -Name MimSyncDsc
+﻿Import-Module -Name MimDsc
 
 Describe Get-MimRegistryKey{
     It 'Does Not Throw' {

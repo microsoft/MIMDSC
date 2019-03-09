@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMVDeletionRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMVDeletionRule
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -38,7 +38,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVDeletionRule - using t
     It 'MimSyncMVDeletionRule - desired state' {
         Configuration TestMimSyncMVDeletionRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -59,7 +59,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVDeletionRule - using t
     It 'MimSyncMVDeletionRule - desired state' {
         Configuration TestMimSyncMVDeletionRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -82,7 +82,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVDeletionRule - using t
 #TODO - more tests for other deletion rule types, such as
 Configuration TestMimSyncMVDeletionRule 
 { 
-    Import-DscResource -ModuleName MimSyncDsc
+    Import-DscResource -ModuleName MimDsc
 
     Node (hostname) 
     { 

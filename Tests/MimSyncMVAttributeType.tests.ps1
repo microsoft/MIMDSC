@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncMVAttributeType
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncMVAttributeType
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -50,7 +50,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVAttributeType - using 
     It 'MimSyncMVAttributeType - desired state' {
         Configuration TestMimSyncMVAttributeType 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -75,7 +75,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVAttributeType - using 
     It 'MimSyncMVAttributeType - incorrect indexed state' {
         Configuration TestMimSyncMVAttributeType 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -100,7 +100,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncMVAttributeType - using 
     It 'MimSyncMVAttributeType - missing attribute type' {
         Configuration TestMimSyncMVAttributeType 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

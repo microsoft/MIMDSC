@@ -1,5 +1,5 @@
 
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncImportAttributeFlowRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncImportAttributeFlowRule
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -114,7 +114,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'Direct IAF Rule - desired state' {
         Configuration TestMimSyncImportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -143,7 +143,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'Direct IAF Rule - dn-mapping - desired state' {
         Configuration TestMimSyncImportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -172,7 +172,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'DN-Part-Mapping IAF Rule - desired state' {
         Configuration TestMimSyncImportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -201,7 +201,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'Scripted IAF Rule - multiple source attributes - desired state' {
         Configuration TestMimSyncImportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -231,7 +231,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'Constant IAF Rule - desired state' {
         Configuration TestMimSyncImportAttributeFlowRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -260,7 +260,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncImportAttributeFlowRule 
     It 'Issue: IAF Rules with identical key properties' {
         Configuration TestMimSyncConfig 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

@@ -1,4 +1,4 @@
-$dscResource = Get-DscResource -Module MimSyncDsc -Name MimSyncJoinRule
+$dscResource = Get-DscResource -Module MimDsc -Name MimSyncJoinRule
 
 Import-Module -Name $dscResource.Path -Force
 
@@ -138,7 +138,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncJoinRule - using the Loc
     It 'Join Rule - desired state' {
         Configuration TestMimSyncJoinRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 
@@ -213,7 +213,7 @@ Describe -Tag 'RunsInLocalConfigurationManager' 'MimSyncJoinRule - using the Loc
     It 'Join Rule - incorrect order' {
         Configuration TestMimSyncJoinRule 
         { 
-            Import-DscResource -ModuleName MimSyncDsc
+            Import-DscResource -ModuleName MimDsc
 
             Node (hostname) 
             { 

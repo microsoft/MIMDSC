@@ -16,8 +16,8 @@ function Write-MimSyncConfigCache
     [CmdletBinding()]
     Param
     (
-        # Cache Folder (defaults to $env:ProgramData\MimSyncDsc\Svrexport)
-        $CacheLocation = "$env:ProgramData\MimSyncDsc\Svrexport",
+        # Cache Folder (defaults to $env:ProgramData\MimDsc\Svrexport)
+        $CacheLocation = "$env:ProgramData\MimDsc\Svrexport",
 
         # Cache Age (defaults to one day)
         [TimeSpan]

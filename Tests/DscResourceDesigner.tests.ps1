@@ -3,7 +3,7 @@ if (-not (Get-Module xDSCResourceDesigner -ListAvailable))
     Install-Module xDSCResourceDesigner -Scope CurrentUser -Force -Confirm:$false
 }
 
-Get-DscResource -Module MimSyncDsc | ForEach-Object {
+Get-DscResource -Module MimDsc | ForEach-Object {
     $dscResource = $PSItem
     Describe -Tag 'Build' "DscResource Designer Validation for $($dscResource.ResourceType)"{
         It 'Test-xDscResource Should Pass'{
