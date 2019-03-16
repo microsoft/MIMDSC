@@ -63,6 +63,7 @@ PowerShellVersion = '5.0'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
+    'Convert-MimSvcExportToPSObject'
     'Convert-MimSyncConfigToDsc'
     'Convert-MimSyncJoinCriterionToCimInstance'
     'Convert-MimSyncMVObjectTypeToCimInstance'
@@ -70,6 +71,9 @@ FunctionsToExport = @(
     'Convert-MimSyncRunStepToCimInstance'
     'Format-MimSynchronizationConfigurationFiles'
     'Format-XML'
+    'Get-MimSvcObjectID'
+    'Get-MimSvcObjectByXPath'
+    'Get-MimSvcSchemaCache'
     'Get-MimSyncExportAttributeFlow'
     'Get-MimSyncProjectionRule'
     'Get-MimRegistryKey'
@@ -81,8 +85,11 @@ FunctionsToExport = @(
     'Get-MimSyncMetaverseSchema'
     'Get-MimSyncMVDeletionRule'
     'Get-MimSyncServerXml'
+    'Test-MimSvcTargetResource'
+    'Write-MimSvcSchemaCache'
     'Write-MimSyncConfigCache'
     'Write-MimDscAuditObject'
+    'Write-VerboseHashTable'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
