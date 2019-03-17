@@ -1,3 +1,4 @@
+Import-FimAutomation
 function Get-MimSvcObjectByXPath
 {
 <#

@@ -50,7 +50,9 @@ PowerShellVersion = '5.0'
 #RequiredAssemblies = @('xmldiffpatch.dll')
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
+ScriptsToProcess = @(
+    '.\Functions\Import-FIMAutomation.ps1'
+)
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()

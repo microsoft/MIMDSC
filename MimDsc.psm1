@@ -1,5 +1,4 @@
-﻿
-#Get function definition files.
+﻿#Get function definition files.
 $Public = @(Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction SilentlyContinue)
 
 #Dot source the files
