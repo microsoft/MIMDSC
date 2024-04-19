@@ -92,7 +92,6 @@ function Set-MimSvcTargetResource
     
     $mimAttributeTypes = Get-MimSvcSchemaCache -ObjectType $ObjectType
 
-    $fimImportChanges = @()
     foreach ($attributeType in $mimAttributeTypes)
     {
         if ($attributeType.Name -in 'Assistant','AuthNWFLockedOut','AuthNWFRegistered','AuthNLockoutRegistrationID','ComputedMember','ConnectedSystem','Dependency','DomainConfiguration','ObjectID','Precedence','CreatedTime','Creator','ResourceTime','DeletedTime','ObjectType','DetectedRulesList','ExpectedRulesList','ExpirationTime','MVObjectID','Temporal')
