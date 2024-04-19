@@ -22,5 +22,5 @@ function Get-MimSvcSchemaCache
     Write-Verbose "Using CacheLocation: $CacheLocation"
     Write-Verbose "Using ObjectType:    $ObjectType"
 
-    ConvertTo-FIMResource -File (Join-Path $CacheLocation $ObjectType)
+    Import-Clixml -Path (Join-Path $CacheLocation $ObjectType)
 }

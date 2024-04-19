@@ -50,21 +50,8 @@ function Test-MimSvcTargetResource
     }
     Write-Verbose "Searching using XPath: $xpathFilter"
 
-    ###
-    ### If a credential was supplied, then do the first search as that credentials
-    ### the FimAutomation PS-Snapin caches the credential so we don't have to supply 
-    ### the credential again in this function.
-    ###
-    if ($DscBoundParameters['Credential'])
-    {
-        Write-Verbose "Searching as $($DscBoundParameters['Credential'].UserName)."
-        $mimSvcObject = Get-MimSvcObjectByXPath -Filter $xpathFilter  -Credential $DscBoundParameters['Credential']
-    }
-    else
-    {
-        Write-Verbose "Searching as LocalSystem (NOTE: this will fail if LocalSystem has not been granted permissions)."
-        $mimSvcObject = Get-MimSvcObjectByXPath -Filter $xpathFilter
-    }
+    Write-Verbose "Searching as LocalSystem (NOTE: this will fail if LocalSystem has not been granted permissions)."
+    $mimSvcObject = Search-Resources -XPath $xpathFilter -ExpectedObjectType $ObjectType
     
     ###
     ### Check the schema cache and update if necessary
@@ -89,10 +76,10 @@ function Test-MimSvcTargetResource
             Write-Verbose "$ObjectType found, diffing the properties: $($mimSvcObject.ObjectID)"
             $objectsAreTheSame = $true
 
-            $fimAttributeTypes = Get-MimSvcSchemaCache -ObjectType $ObjectType | Convert-MimSvcExportToPSObject
+            $mimAttributeTypes = Get-MimSvcSchemaCache -ObjectType $ObjectType 
 
             ### Note the syntax to label the loop, used in the switch statement to continue the for loop which to PowerShell is the outer loop
-            :FimAttributeTypes foreach ($attributeType in $fimAttributeTypes)
+            :FimAttributeTypes foreach ($attributeType in $mimAttributeTypes)
             {
                 if ($attributeType.Name -in 'Assistant','AuthNWFLockedOut','AuthNWFRegistered','AuthNLockoutRegistrationID','ComputedMember','ConnectedSystem','Dependency','DomainConfiguration','ObjectID','CreatedTime','Creator','ResourceTime','DeletedTime','ObjectType','Precedence','DetectedRulesList','ExpectedRulesList','ExpirationTime','MVObjectID','Temporal')
                 {
@@ -132,14 +119,14 @@ function Test-MimSvcTargetResource
                             $mimSvcObjectIDs = $DscBoundParameters[$attributeType.Name] | 
                             ForEach-Object {
                                 Write-Verbose " Resolving $($attributeType.Name) to a GUID: $_"
-                                "urn:uuid:{0}" -F (Get-MimSvcObjectID -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $_)
+                                "urn:uuid:{0}" -F (Get-Resource -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $_ -AttributesToGet ObjectID | Select-Object -ExpandProperty ObjectID | Select-Object -ExpandProperty Value)
                             }
                             $DscBoundParameters[$attributeType.Name] = $mimSvcObjectIDs
                         }
                         else
                         {
                             Write-Verbose " Resolving $($attributeType.Name) to a GUID: $($DscBoundParameters[$attributeType.Name])"
-                            $DscBoundParameters[$attributeType.Name] = "urn:uuid:{0}" -F (Get-MimSvcObjectID -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $DscBoundParameters[$attributeType.Name])
+                            $DscBoundParameters[$attributeType.Name] = "urn:uuid:{0}" -F (Get-Resource -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $DscBoundParameters[$attributeType.Name] -AttributesToGet ObjectID | Select-Object -ExpandProperty ObjectID | Select-Object -ExpandProperty Value)
                         }
                     }
                 }
@@ -157,9 +144,8 @@ function Test-MimSvcTargetResource
                     {
                         Write-Verbose "  Converting '$jsonString' to a FIM ObjectID"
                         $jsonObject = ConvertFrom-Json -InputObject $jsonString
-
-                        $mimSvcObjectID = Get-MimSvcObjectID -ObjectType $jsonObject.ObjectType -AttributeName $jsonObject.AttributeName -AttributeValue $jsonObject.AttributeValue
-
+                        
+                        $mimSvcObjectID = Get-Resource -ObjectType $jsonObject.ObjectType -AttributeName $jsonObject.AttributeName -AttributeValue $jsonObject.AttributeValue -AttributesToGet ObjectID | Select-Object -ExpandProperty ObjectID | Select-Object -ExpandProperty Value
                         $DscBoundParameters[$attributeType.Name] = $DscBoundParameters[$attributeType.Name] -replace $jsonString, $mimSvcObjectID 
                     }
                 }

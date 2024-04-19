@@ -49,20 +49,20 @@ function Write-MimSvcSchemaCache
 
     if ($needToWriteCache)
     {
-        foreach ($FimObjectType in Get-MimSvcObjectByXPath -Filter "/ObjectTypeDescription")
+        foreach ($mimObjectType in Search-Resources -XPath "/ObjectTypeDescription" -ExpectedObjectType ObjectTypeDescription)
         {
-            Write-Verbose "Getting bound attributes for '$($FimObjectType.Name)'"
-            $boundAttributes = Export-FIMConfig -OnlyBaseResources -CustomConfig @"
+            Write-Verbose "Getting bound attributes for '$($mimObjectType.Name)'"
+            $boundAttributes = Search-Resources -XPath  @"
                         /BindingDescription
                         [
                             BoundObjectType= /ObjectTypeDescription
                             [
-                                Name='$($FimObjectType.Name)'
+                                Name='$($mimObjectType.Name)'
                             ]
                         ]
                         /BoundAttributeType
-"@ 
-            $boundAttributes | ConvertFrom-FIMResource -File (Join-Path $CacheLocation $FimObjectType.Name)
+"@ -ExpectedObjectType AttributeTypeDescription
+            $boundAttributes | Export-Clixml -Path (Join-Path $CacheLocation $mimObjectType.Name)
         }
     }
     else

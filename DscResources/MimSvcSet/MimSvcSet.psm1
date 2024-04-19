@@ -140,7 +140,7 @@ function Test-TargetResource
 		$Ensure
 	)
 
-    Test-FimTargetResource -FimObjectType Set -FimKeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
+    Test-MimSvcTargetResource -ObjectType Set -KeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
 }
 
 Export-ModuleMember -Function *-TargetResource
