@@ -87,6 +87,7 @@ FunctionsToExport = @(
     'Get-MimSyncMetaverseSchema'
     'Get-MimSyncMVDeletionRule'
     'Get-MimSyncServerXml'
+    'Set-MimSvcTargetResource'
     'Test-MimSvcTargetResource'
     'Write-MimSvcSchemaCache'
     'Write-MimSyncConfigCache'

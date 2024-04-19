@@ -88,7 +88,7 @@ function Set-TargetResource
 		$Ensure
 	)
 
-    Set-FimTargetResource -FimObjectType Set -FimKeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
+    Set-MimSvcTargetResource -ObjectType Set -KeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
 
 }
 
