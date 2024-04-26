@@ -1,0 +1,29 @@
+﻿
+[ClassVersion("1.0.0.0"), FriendlyName("AttributeTypeDescription")]
+class MimSvcAttributeTypeDescription : OMI_BaseResource
+{
+	[Read] DateTime CreatedTime;
+	[Read] String Creator;
+	[Write] String DataType;
+	[Read] DateTime DeletedTime;
+	[Write] String Description;
+	[Write] String DetectedRulesList[];
+	[Write] String DisplayName;
+	[Write] String ExpectedRulesList[];
+	[Write] DateTime ExpirationTime;
+	[Write] Uint64 IntegerMaximum;
+	[Write] Uint64 IntegerMinimum;
+	[Write] String Locale;
+	[Write] Boolean Localizable;
+	[Write] Boolean Multivalued;
+	[Write] String MVObjectID;
+	[Key] String Name;
+	[Read] String ObjectID;
+	[Read] DateTime ResourceTime;
+	[Read] String ObjectType;
+	[Write] String StringRegex;
+	[Write] String UsageKeyword[];
+	[Write, EmbeddedInstance("MSFT_Credential")] String Credential;
+	[Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
+

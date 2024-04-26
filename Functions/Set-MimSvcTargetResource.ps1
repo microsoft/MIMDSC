@@ -172,7 +172,7 @@ function Set-MimSvcTargetResource
             Write-Verbose "  From DSC: $($DscBoundParameters[$attributeType.Name] -join ',')"
             Write-Verbose "  From MIM: $($mimSvcObject.($attributeType.Name) -join ',')"
 
-            if ($DscBoundParameters[$attributeType.Name] -eq $null -and $mimSvcObject.($attributeType.Name) -eq $null)
+            if (($DscBoundParameters[$attributeType.Name].Count -eq 0) -and ($mimSvcObject.($attributeType.Name).Count -eq 0))
             {
                 ### do nothing.  done.
             }
