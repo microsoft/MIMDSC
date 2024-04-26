@@ -82,7 +82,10 @@ function Set-MimSvcTargetResource
         if ($mimSvcObject -ne $null)
         {
             Write-Verbose "$ObjectType is present, so removing it: $DisplayName"
-            $mimSvcObject | Remove-WmiObject
+            $mimSvcObject | Remove-Resource
+
+            #exit, the rest is just about diff'ing the attributes
+            return
         }
     }
     else
