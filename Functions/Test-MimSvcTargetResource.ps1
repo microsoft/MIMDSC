@@ -118,8 +118,8 @@ function Test-MimSvcTargetResource
                         {
                             $mimSvcObjectIDs = $DscBoundParameters[$attributeType.Name] | 
                             ForEach-Object {
-                                Write-Verbose " Resolving $($attributeType.Name) to a GUID: $_"
-                                "urn:uuid:{0}" -F (Get-Resource -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $_ -AttributesToGet ObjectID | Select-Object -ExpandProperty ObjectID | Select-Object -ExpandProperty Value)
+                                Write-Verbose " Resolving $($attributeType.Name) to a GUID: $PSItem"
+                                "urn:uuid:{0}" -F (Get-Resource -ObjectType $targetObjectType -AttributeName $searchAttribute -AttributeValue $PSItem.ToString() -AttributesToGet ObjectID | Select-Object -ExpandProperty ObjectID | Select-Object -ExpandProperty Value)
                             }
                             $DscBoundParameters[$attributeType.Name] = $mimSvcObjectIDs
                         }

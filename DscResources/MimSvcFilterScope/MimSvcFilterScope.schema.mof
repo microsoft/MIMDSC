@@ -1,0 +1,22 @@
+﻿
+[ClassVersion("1.0.0.0"), FriendlyName("FilterScope")]
+class MimSvcFilterScope : OMI_BaseResource
+{
+	[Write] String AllowedAttributes[];
+	[Write] String AllowedMembershipReferences[];
+	[Read] DateTime CreatedTime;
+	[Read] String Creator;
+	[Read] DateTime DeletedTime;
+	[Write] String Description;
+	[Write] String DetectedRulesList[];
+	[Key] String DisplayName;
+	[Write] String ExpectedRulesList[];
+	[Write] DateTime ExpirationTime;
+	[Write] String Locale;
+	[Write] String MVObjectID;
+	[Read] String ObjectID;
+	[Read] DateTime ResourceTime;
+	[Read] String ObjectType;
+	[Write, EmbeddedInstance("MSFT_Credential")] String Credential;
+	[Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
