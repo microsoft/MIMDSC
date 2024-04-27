@@ -1,15 +1,4 @@
 ﻿
-
-<#
-
-Get-FimObjectByXPath -Filter "/EmailTemplate"
-Get-FimObjectByXPath -Filter "/EmailTemplate[DisplayName='Default expiration notification email template']"
-Get-FimObjectByXPath -Filter "/WorkflowDefinition[DisplayName='Owner Approval Workflow']" | select -expand XOML | clip
-
-New-FimImportObject -ObjectType WorkflowDefinition -State Delete -TargetObjectIdentifier (Get-FimObjectID WorkflowDefinition Name $displayName) -ApplyNow
-
-#>
-
 Set-Location c:\MimDsc
 
 #region Call the Set and Test methods directly - allows for setting a breakpoint for debuggering
