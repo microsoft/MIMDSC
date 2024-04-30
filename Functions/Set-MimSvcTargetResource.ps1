@@ -231,6 +231,10 @@ function Set-MimSvcTargetResource
                 $mimSvcObject.($attributeType.Name) = ($DscBoundParameters[$attributeType.Name] -as [String])                   
             }
         }
+        elseif ($attributeType.DataType -eq 'Binary')
+        {
+            Write-Warning "  Binary attributes not supported by MimDsc yet: $($attributeType.Name)"                    
+        }
         else
         {
             Write-Verbose "  From DSC: $($DscBoundParameters[$attributeType.Name])"
