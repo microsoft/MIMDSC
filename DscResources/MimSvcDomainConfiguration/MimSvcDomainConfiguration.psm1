@@ -6,7 +6,7 @@
 	(
 		[parameter(Mandatory = $true)]
 		[System.String]
-		$DisplayName
+		$Domain
 	)
 
 	#Write-Verbose "Use this cmdlet to deliver information about command processing."
@@ -51,11 +51,11 @@ function Set-TargetResource
 
 		[System.String[]]
 		$DetectedRulesList,
-
-		[parameter(Mandatory = $true)]
+		
 		[System.String]
 		$DisplayName,
 
+        [parameter(Mandatory = $true)]
 		[System.String]
 		$Domain,
 
@@ -88,7 +88,7 @@ function Set-TargetResource
 		$Ensure
 	)
 
-    Set-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
+    Set-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName Domain -DscBoundParameters $PSBoundParameters
 }
 
 function Test-TargetResource
@@ -102,11 +102,11 @@ function Test-TargetResource
 
 		[System.String[]]
 		$DetectedRulesList,
-
-		[parameter(Mandatory = $true)]
+		
 		[System.String]
 		$DisplayName,
 
+        [parameter(Mandatory = $true)]
 		[System.String]
 		$Domain,
 
@@ -139,7 +139,7 @@ function Test-TargetResource
 		$Ensure
 	)
 
-    Test-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName DisplayName -DscBoundParameters $PSBoundParameters
+    Test-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName Domain -DscBoundParameters $PSBoundParameters
 }
 
 Export-ModuleMember -Function *-TargetResource

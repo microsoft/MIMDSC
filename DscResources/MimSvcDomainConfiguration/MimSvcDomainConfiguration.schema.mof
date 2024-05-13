@@ -7,8 +7,8 @@ class MimSvcDomainConfiguration : OMI_BaseResource
 	[Read] DateTime DeletedTime;
 	[Write] String Description;
 	[Write] String DetectedRulesList[];
-	[Key] String DisplayName;
-	[Write] String Domain;
+	[Write] String DisplayName;
+	[Key] String Domain;
 	[Write] String ExpectedRulesList[];
 	[Write] DateTime ExpirationTime;
 	[Write] String ForeignSecurityPrincipalSet;
