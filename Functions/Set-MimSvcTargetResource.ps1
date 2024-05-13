@@ -120,7 +120,7 @@ function Set-MimSvcTargetResource
 
             switch ($attributeType.Name)
             {
-                {$_ -in 'PrincipalSet','ResourceCurrentSet','ResourceFinalSet','AllowedMembershipReferences'} {$mimTargetObjectType = 'Set'}
+                {$_ -in 'PrincipalSet','ResourceCurrentSet','ResourceFinalSet','AllowedMembershipReferences','ForeignSecurityPrincipalSet'} {$mimTargetObjectType = 'Set'}
                 {$_ -in 'AuthenticationWorkflowDefinition','AuthorizationWorkflowDefinition','ActionWorkflowDefinition'} {$mimTargetObjectType = 'WorkflowDefinition'}
                 {$_ -in 'BoundAttributeType','AllowedAttributes'} {$mimTargetObjectType = 'AttributeTypeDescription'; $mimSearchAttribute = 'Name'}
                 {$_ -eq 'BoundObjectType'} {$mimTargetObjectType = 'ObjectTypeDescription'; $mimSearchAttribute = 'Name'}
@@ -128,6 +128,8 @@ function Set-MimSvcTargetResource
                 {$_ -eq 'TimeZone'} {$mimTargetObjectType = 'TimeZoneConfiguration'; $mimSearchAttribute = 'TimeZoneId'}
                 {$_ -eq 'SynchronizeObjectType'} {$mimTargetObjectType = 'ObjectTypeDescription'; $mimSearchAttribute = 'Name'}
                 {$_ -eq 'ManagementAgentID'} {$mimTargetObjectType = 'ma-data';}
+                {$_ -eq 'ForestConfiguration'}{$mimTargetObjectType = 'ForestConfiguration'}
+                {$_ -eq 'DomainConfiguration'}{$mimTargetObjectType = 'DomainConfiguration'; $mimSearchAttribute = 'Domain'}
                 Default {Write-Error "Found a reference attribute we don't know how to resolve: $($attributeType.Name)."}
             }
 

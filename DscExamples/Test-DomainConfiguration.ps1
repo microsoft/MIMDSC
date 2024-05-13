@@ -19,9 +19,20 @@ $resourceProperties = @{
     Ensure						= 'Present'
 }
 
-Test-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName DisplayName -DscBoundParameters $resourceProperties -Verbose:$true
+$resourceProperties = @{
+    Description                 = 'Africa Domain'
+	DisplayName                 = 'Africa Domain'
+	Domain                      = 'africa'
+	ForeignSecurityPrincipalSet = 'All Domain Local Group Members not in Africa Domain(FSPs)'
+	ForestConfiguration         = 'Corp Forest'
+	IsConfigurationType         = $False
+	DependsOn                   = '[Set]AllDomainLocalGroupMembersnotinAfricaDomainFSPs'
+	Ensure                      = 'Present'
+}
 
-Set-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName DisplayName -DscBoundParameters $resourceProperties -Verbose:$true
+#Test-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName Domain -DscBoundParameters $resourceProperties -Verbose:$true
+
+Set-MimSvcTargetResource -ObjectType DomainConfiguration -KeyAttributeName Domain -DscBoundParameters $resourceProperties -Verbose:$true
 
 #endregion
 

@@ -100,7 +100,7 @@ function Test-MimSvcTargetResource
 
                     switch ($attributeType.Name)
                     {
-                        {$_ -in 'PrincipalSet','ResourceCurrentSet','ResourceFinalSet','AllowedMembershipReferences'} {$targetObjectType = 'Set'}
+                        {$_ -in 'PrincipalSet','ResourceCurrentSet','ResourceFinalSet','AllowedMembershipReferences','ForeignSecurityPrincipalSet'} {$targetObjectType = 'Set'}
                         {$_ -in 'AuthenticationWorkflowDefinition','AuthorizationWorkflowDefinition','ActionWorkflowDefinition'} {$targetObjectType = 'WorkflowDefinition'}
                         {$_ -in 'BoundAttributeType','AllowedAttributes'} {$targetObjectType = 'AttributeTypeDescription'; $searchAttribute = 'Name'}
                         {$_ -eq 'BoundObjectType'} {$targetObjectType = 'ObjectTypeDescription'; $searchAttribute = 'Name'}
@@ -108,6 +108,8 @@ function Test-MimSvcTargetResource
                         {$_ -eq 'TimeZone'} {$targetObjectType = 'TimeZoneConfiguration'; $searchAttribute = 'TimeZoneId'}
                         {$_ -eq 'SynchronizeObjectType'} {$targetObjectType = 'ObjectTypeDescription'; $searchAttribute = 'Name'}
                         {$_ -eq 'ManagementAgentID'} {$targetObjectType = 'ma-data';}
+                        {$_ -eq 'ForestConfiguration'}{$targetObjectType = 'ForestConfiguration'}
+                        {$_ -eq 'DomainConfiguration'}{$targetObjectType = 'DomainConfiguration'; $searchAttribute = 'Domain'}
                         Default {Write-Warning "Skipping a reference attribute we don't know how to resolve: $($attributeType.Name).";continue FimAttributeTypes}
                     }
 
