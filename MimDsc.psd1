@@ -66,6 +66,11 @@ ScriptsToProcess = @(
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
     'Convert-MimSvcExportToPSObject'
+    'Convert-MimSvcObjectToDscDependsOnString'
+    'Convert-MimSvcObjectToDscItemName'
+    'Convert-MimSvcObjectToDscScript'
+    'Convert-MimSvcReferenceToDscLookupString'
+    'Convert-MimSvcReferenceToMimObject'
     'Convert-MimSyncConfigToDsc'
     'Convert-MimSyncJoinCriterionToCimInstance'
     'Convert-MimSyncMVObjectTypeToCimInstance'
